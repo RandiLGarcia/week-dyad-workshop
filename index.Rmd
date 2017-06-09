@@ -1,0 +1,141 @@
+---
+title: "DATIC: Dyadic Data Analysis 2017 Workshop"
+author: "Randi L. Garcia and David A. Kenny"
+date: "June 19-23, 2017"
+output:
+  html_document:
+    highlight: pygments
+    theme: cerulean
+    toc: yes
+    toc_float: yes
+    toc_depth: 3
+fontsize: 12 pt
+---
+    
+***
+#Meeting Sign-up Sheet
+
+  > Sign-up on [this Googlesheet](https://docs.google.com/spreadsheets/d/1enfIHEKDqw5wALxG3Qb140dnBXc74VRTc2Pr-oefLQo/edit?usp=sharing)  
+
+***
+
+#Schedule
+
+##Day 1:  Definitions, Nonindependence, and Data  
+
+  + Lecture and Lab 9-12
+    - [Definitions](Definitions.pdf)
+    - [Introduction to R](Intro_to_R_and_the_Data.html) and [Riggs Dataset](Riggs Codebook.pdf)
+    - [Nonindependence](Nonindependence.pdf)
+    - [Data Structures and Restructuring](Data_Structures.pdf)
+  + Lunch 12:00 PM to 1:15 PM  
+    - [Yelp: UConn](https://www.yelp.com/search?cflt=restaurants&find_near=university-of-connecticut-storrs-2)
+  + Lecture and Lab 1:15-3:30
+    - [Multilevel Modeling of Dyadic Data](MLM.html): Effects of Gender and Length of Marriage on Satisfaction
+    - [Introduction to the APIM](APIM.pdf)
+  + Late Afternoon Session 3:30-5:00
+    - [Homework (optional)](Day 1_QUESTIONS.pdf)
+    - Restructure and Do Runs on One's Own Data
+    - [Individual Meetings]((https://docs.google.com/spreadsheets/d/1enfIHEKDqw5wALxG3Qb140dnBXc74VRTc2Pr-oefLQo/edit?usp=sharing))
+
+***
+
+##Day 2: The Actor-Partner Interdependence Model
+
+  + Lecture and Lab 9-12
+    - [Indistinguishable Dyads](Indistinguishable.html): Effects of Attachment Anxiety on Satisfaction
+    - [Distinguishable Dyads](Distinguishable.html): Results Differing by Gender
+    - [Power Analyses](Power.pdf)
+  + Lunch 12:00 PM to 1:15 PM  
+  + Lecture and Lab 1:15-3:30
+    - [Test of Distinguishability](Test_for_Distinguishability.html)
+    - [Testing for Patterns](Patterns.html)
+    - Actor-Partner Interactions: [Slides](Actor Partner Interactions.pdf) and [Example](Actor-Partner Interactions.html)
+	  - [APIM_MM Dingy App](Dingy_Output.pdf)
+  + Late Afternoon Session 3:30-5:00
+    - [Homework (optional)](Day 2_QUESTIONS.pdf)
+    - Do Runs on One's Own Data
+    - [Individual Meetings]((https://docs.google.com/spreadsheets/d/1enfIHEKDqw5wALxG3Qb140dnBXc74VRTc2Pr-oefLQo/edit?usp=sharing))
+
+***
+
+##Day 3: Moderation and Mediation
+
+  + Lecture and Lab 9-12
+    - [Moderation Introduction](Moderation of the APIM.pdf)
+    - [Moderation in the APIM](Moderation_in_the_APIM.html): Attachment Avoidance Moderating the Effect of Attachment Anxiety on Satisfaction
+  + Lunch 12:00 PM to 1:15 PM  
+  + Lecture and Lab 1:15-3:30
+    - [Mediation Introduction](Mediation of the APIM.pdf)
+    - [Mediation in the APIM](Mediation_in_the_APIM.html): Attachment Anxiety Mediating the Effect of Childhood Abuse on Satisfaction
+    - [APIMoM and APIMeM Apps](APIMemoM.pdf)	
+  + Late Afternoon Session 3:30-5:00
+    - [Homework (optional)](Day 3_QUESTIONS.pdf)
+    - Do Runs on One's Own Data
+    - [Individual Meetings]((https://docs.google.com/spreadsheets/d/1enfIHEKDqw5wALxG3Qb140dnBXc74VRTc2Pr-oefLQo/edit?usp=sharing)) 
+
+***
+
+##Day 4: Over-Time Models of Dyadic Data
+
+  + Lecture and Computer Workshop 9-12 and 1:15-3:30
+    - [Introduction](Over Time_Intro.pdf)
+    - [Kashy Dataset](Kashy Codebook.pdf)
+    - Growth Curve Models: [Slides](Growth Curve.pdf) and [Examples](Growth_Curve_Modeling.html)  
+      - Individual Growth Curve
+      - Dyadic Growth Curves
+  + Lunch 12:00 PM to 1:15 PM  
+  + Lecture and Lab 1:15-3:30
+    - [Repeated Measures Analysis](Repeated_Measures.html): Effect of Day and Gender on Satisfaction	
+    - [Stability-Influence Model](Stability-Influence_Model.html): Effect of Partner's Satisfaction on Respondent's Satisfaction 
+    - [APIM Person-Centered](APIM_OverTime.html)
+  + Late Afternoon Session 3:30-5:00
+    - [Homework (optional)](Day 4_QUESTIONS.pdf)
+    - Do Runs on One's Own Data
+    - [Individual Meetings]((https://docs.google.com/spreadsheets/d/1enfIHEKDqw5wALxG3Qb140dnBXc74VRTc2Pr-oefLQo/edit?usp=sharing)) 
+
+***
+
+##Day 5: Additional Topics
+
+  + Lecture 9-12
+    - [Presentation and Doing Dyadic Data Analysis Right](Presentation.pdf)
+    - [DyadR](https://github.com/RandiLGarcia/dyadr)
+    - [R: Advantages and Disadvantages](Advantages and Disadvantages of R.pdf)
+    - Alternative Models and Estimation Methods 
+    - Alternative Dyadic Models
+      - [Structural Equation Modeling (SEM)](CommonFateModel.html)
+      - [Generalized Linear Mixed Models](Genderalized_Linear_Mixed_Models___GEE.html)
+      - [Generalized Estimating Equations (GEE)](Genderalized_Linear_Mixed_Models___GEE.html)
+    - [Alternative Dyadic Designs](designs.pdf)
+      - One-with-Many
+      - Social Relations Model
+      - GAPIM
+  + Group Lunch 12-1:15
+
+***
+
+#Links to Apps and `dyadr`
+
+  + [ItoP](https://davidakenny.shinyapps.io/ItoP/)
+  + [DtoP](https://davidakenny.shinyapps.io/DtoP/)
+  + [ItoD](https://davidakenny.shinyapps.io/ItoD/)
+  + [APIMPower](https://robert-a-ackerman.shinyapps.io/APIMPowerRdis/)
+  + [APIM_MM](https://davidakenny.shinyapps.io/APIM_MM/)
+  + [Dingy](https://davidakenny.shinyapps.io/Dingy/)
+  + [APIMeM](https://davidakenny.shinyapps.io/APIMeM/)
+  + [APIMoM](https://davidakenny.shinyapps.io/APIMoM/)
+  + [dyadr gitHub](https://github.com/RandiLGarcia/dyadr)
+
+#Cheatsheets and R Tutorials
+
+  + [dplyr cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+  + [ggplot2 cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)
+  + [RMarkdown cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
+    -[Advanced RMarkdown](http://rmarkdown.rstudio.com/authoring_pandoc_markdown.html)
+    
+#Other Helpful Links
+
+  + [UConn Map](http://maps.uconn.edu/index.php) 
+  + [ggplot2 book by Hadley Wickham](http://ms.mcmaster.ca/~bolker/misc/ggplot2-book.pdf)
+  + [R for Data Science by Garrett Grolemund](http://r4ds.had.co.nz/index.html)
