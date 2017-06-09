@@ -251,26 +251,135 @@ div.tocify {
 <p>Read in the pairwise dataset</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nlme)
 <span class="kw">library</span>(dyadr)
+<span class="kw">library</span>(dplyr)
+
 riggsp&lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">file.choose</span>(), <span class="dt">header=</span><span class="ot">TRUE</span>)
 
-<span class="co"># Create variables</span>
-        riggsp$Woman =<span class="st"> </span>(riggsp$Gender_A<span class="dv">+1</span>)/<span class="dv">2</span>
-        riggsp$Man  =<span class="st"> </span>-(riggsp$Gender_A<span class="dv">-1</span>)/<span class="dv">2</span>
-        riggsp$Abuse_AW =<span class="st"> </span>riggsp$Abuse_A*riggsp$Woman
-        riggsp$Abuse_PW =<span class="st"> </span>riggsp$Abuse_P*riggsp$Woman
-        riggsp$Abuse_AM =<span class="st"> </span>riggsp$Abuse_A*riggsp$Man
-        riggsp$Abuse_PM =<span class="st"> </span>riggsp$Abuse_P*riggsp$Man
-        riggsp$Anxiety_AW =<span class="st"> </span>riggsp$Anxiety_A*riggsp$Woman
-        riggsp$Anxiety_PW =<span class="st"> </span>riggsp$Anxiety_P*riggsp$Woman
-        riggsp$Anxiety_AM =<span class="st"> </span>riggsp$Anxiety_A*riggsp$Man
-        riggsp$Anxiety_PM =<span class="st"> </span>riggsp$Anxiety_P*riggsp$Man</code></pre></div>
+<span class="co"># Create variables with dplyr</span>
+riggsp &lt;-<span class="st"> </span>riggsp %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Woman =</span> (Gender_A<span class="dv">+1</span>)/<span class="dv">2</span>,
+         <span class="dt">Man  =</span> -(Gender_A<span class="dv">-1</span>)/<span class="dv">2</span>,
+         <span class="dt">Abuse_AW =</span> Abuse_A*Woman,
+         <span class="dt">Abuse_PW =</span> Abuse_P*Woman,
+         <span class="dt">Abuse_AM =</span> Abuse_A*Man,
+         <span class="dt">Abuse_PM =</span> Abuse_P*Man,
+         <span class="dt">Anxiety_AW =</span> Anxiety_A*Woman,
+         <span class="dt">Anxiety_PW =</span> Anxiety_P*Woman,
+         <span class="dt">Anxiety_AM =</span> Anxiety_A*Man,
+         <span class="dt">Anxiety_PM =</span> Anxiety_P*Man)
+
+<span class="co"># riggsp$Woman = (riggsp$Gender_A+1)/2</span>
+<span class="co"># riggsp$Man  = -(riggsp$Gender_A-1)/2</span>
+<span class="co"># riggsp$Abuse_AW = riggsp$Abuse_A*riggsp$Woman</span>
+<span class="co"># riggsp$Abuse_PW = riggsp$Abuse_P*riggsp$Woman</span>
+<span class="co"># riggsp$Abuse_AM = riggsp$Abuse_A*riggsp$Man</span>
+<span class="co"># riggsp$Abuse_PM = riggsp$Abuse_P*riggsp$Man</span>
+<span class="co"># riggsp$Anxiety_AW = riggsp$Anxiety_A*riggsp$Woman</span>
+<span class="co"># riggsp$Anxiety_PW = riggsp$Anxiety_P*riggsp$Woman</span>
+<span class="co"># riggsp$Anxiety_AM = riggsp$Anxiety_A*riggsp$Man</span>
+<span class="co"># riggsp$Anxiety_PM = riggsp$Anxiety_P*riggsp$Man</span></code></pre></div>
+<div id="making-sure-the-x-variable-does-not-moderate-the-effect-of-the-mediator-on-the-outcome." class="section level2">
+<h2>Making sure the X variable does not moderate the effect of the mediator on the outcome.</h2>
+<div id="abuse-x-anxiety-m-and-their-interaction-xm-affecting-satisfaction-y" class="section level3">
+<h3>Abuse (X), Anxiety (M), and their interaction (XM) affecting Satisfaction (Y)</h3>
+<p>Run with ML to test the eight possible interactions.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">apim_mm &lt;-<span class="st">  </span><span class="kw">gls</span>(Sat_A ~<span class="st"> </span>Gender_A +<span class="st"> </span>Anxiety_A +<span class="st"> </span>Anxiety_P +<span class="st"> </span>Abuse_A +<span class="st"> </span>Abuse_P
+                    +<span class="st"> </span>Anxiety_A*Abuse_A +<span class="st"> </span>Anxiety_P*Abuse_P +<span class="st"> </span>Anxiety_A*Abuse_P +<span class="st"> </span>Anxiety_P*Abuse_A 
+                    +<span class="st"> </span>Anxiety_A*Abuse_A*Gender_A +<span class="st"> </span>Anxiety_P*Abuse_P*Gender_A 
+                    +<span class="st"> </span>Anxiety_A*Abuse_P*Gender_A +<span class="st"> </span>Anxiety_P*Abuse_A*Gender_A,  
+                <span class="dt">na.action =</span> na.omit, 
+                <span class="dt">correlation =</span> <span class="kw">corCompSymm</span>(<span class="dt">form=</span>~<span class="dv">1</span>|Dyad),
+                <span class="dt">method=</span><span class="st">&quot;ML&quot;</span>,
+                <span class="dt">weights =</span> <span class="kw">varIdent</span>(<span class="dt">form=</span>~<span class="dv">1</span>|Gender_A),
+                <span class="dt">data =</span> riggsp)
+
+<span class="kw">smallsummary</span>(apim_mm)</code></pre></div>
+<pre><code>## Correlation structure of class corCompSymm representing
+##       Rho 
+## 0.6327318 
+## Variance function structure of class varIdent representing
+##       -1        1 
+## 1.000000 1.021552 
+##                                   Value  Std.Error     t-value
+## (Intercept)                54.058841430 4.12133973 13.11681273
+## Gender_A                   -0.154153773 1.95513508 -0.07884559
+## Anxiety_A                  -1.182319519 0.88521319 -1.33563252
+## Anxiety_P                  -1.381625647 0.88402298 -1.56288431
+## Abuse_A                    -0.295350337 0.25800041 -1.14476694
+## Abuse_P                     0.116689008 0.25709274  0.45387904
+## Anxiety_A:Abuse_A           0.059212258 0.07496588  0.78985614
+## Anxiety_P:Abuse_P           0.024808552 0.07483961  0.33148958
+## Anxiety_A:Abuse_P          -0.101048654 0.07357832 -1.37334830
+## Anxiety_P:Abuse_A          -0.006059258 0.07367155 -0.08224692
+## Gender_A:Anxiety_A          0.734038536 1.09462475  0.67058463
+## Gender_A:Abuse_A            0.043821414 0.28698444  0.15269613
+## Gender_A:Anxiety_P         -0.227870007 1.09366246 -0.20835497
+## Gender_A:Abuse_P           -0.023931589 0.28616872 -0.08362755
+## Gender_A:Anxiety_A:Abuse_A -0.101233626 0.07701949 -1.31438972
+## Gender_A:Anxiety_P:Abuse_P -0.029941918 0.07689660 -0.38937897
+## Gender_A:Anxiety_A:Abuse_P  0.023233047 0.07815637  0.29726363
+## Gender_A:Anxiety_P:Abuse_A  0.057943725 0.07824415  0.74055025
+##                                 p-value
+## (Intercept)                3.229921e-31
+## Gender_A                   9.372094e-01
+## Anxiety_A                  1.827095e-01
+## Anxiety_P                  1.191629e-01
+## Abuse_A                    2.532432e-01
+## Abuse_P                    6.502530e-01
+## Anxiety_A:Abuse_A          4.302527e-01
+## Anxiety_P:Abuse_P          7.405125e-01
+## Anxiety_A:Abuse_P          1.706977e-01
+## Anxiety_P:Abuse_A          9.345067e-01
+## Gender_A:Anxiety_A         5.030152e-01
+## Gender_A:Abuse_A           8.787434e-01
+## Gender_A:Anxiety_P         8.350971e-01
+## Gender_A:Abuse_P           9.334099e-01
+## Gender_A:Anxiety_A:Abuse_A 1.897466e-01
+## Gender_A:Anxiety_P:Abuse_P 6.972797e-01
+## Gender_A:Anxiety_A:Abuse_P 7.664766e-01
+## Gender_A:Anxiety_P:Abuse_A 4.595612e-01</code></pre>
+<pre><code>##                                  2.5 %      97.5 %
+## (Intercept)                45.98116399 62.13651887
+## Gender_A                   -3.98614811  3.67784057
+## Anxiety_A                  -2.91730548  0.55266645
+## Anxiety_P                  -3.11427885  0.35102755
+## Abuse_A                    -0.80102185  0.21032117
+## Abuse_P                    -0.38720351  0.62058152
+## Anxiety_A:Abuse_A          -0.08771816  0.20614268
+## Anxiety_P:Abuse_P          -0.12187440  0.17149150
+## Anxiety_A:Abuse_P          -0.24525950  0.04316219
+## Anxiety_P:Abuse_A          -0.15045284  0.13833432
+## Gender_A:Anxiety_A         -1.41138655  2.87946362
+## Gender_A:Abuse_A           -0.51865776  0.60630059
+## Gender_A:Anxiety_P         -2.37140904  1.91566903
+## Gender_A:Abuse_P           -0.58481198  0.53694880
+## Gender_A:Anxiety_A:Abuse_A -0.25218905  0.04972180
+## Gender_A:Anxiety_P:Abuse_P -0.18065648  0.12077265
+## Gender_A:Anxiety_A:Abuse_P -0.12995063  0.17641673
+## Gender_A:Anxiety_P:Abuse_A -0.09541199  0.21129944</code></pre>
+<p>We do see that none of the 8 tests are significant, but to be sure we do combined tests of the 8 effects.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">apim_base &lt;-<span class="st">  </span><span class="kw">gls</span>(Sat_A ~<span class="st"> </span>Gender_A +<span class="st"> </span>Anxiety_A +<span class="st"> </span>Anxiety_P 
+                      +<span class="st"> </span>Abuse_A +<span class="st"> </span>Abuse_P,
+                  <span class="dt">na.action =</span> na.omit, 
+                  <span class="dt">correlation =</span> <span class="kw">corCompSymm</span>(<span class="dt">form=</span>~<span class="dv">1</span>|Dyad),
+                  <span class="dt">method =</span> <span class="st">&quot;ML&quot;</span>,
+                  <span class="dt">weights =</span> <span class="kw">varIdent</span>(<span class="dt">form=</span>~<span class="dv">1</span>|Gender_A),
+                  <span class="dt">data =</span> riggsp)
+
+<span class="kw">anova</span>(apim_mm, apim_base)</code></pre></div>
+<pre><code>##           Model df      AIC      BIC    logLik   Test  L.Ratio p-value
+## apim_mm       1 21 2008.145 2086.613 -983.0727                        
+## apim_base     2  9 1996.828 2030.457 -989.4139 1 vs 2 12.68238  0.3925</code></pre>
+<p>Thus, we get confirmation that the assumption of no moderated mediation is needed.</p>
+</div>
+</div>
 <div id="the-four-baron-kenny-steps-using-multilevel-modeling" class="section level2">
 <h2>The Four Baron &amp; Kenny Steps Using Multilevel Modeling</h2>
 <div id="step-1-estimating-and-testing-the-total-effect-c-of-abuse-x-on-satisfaction-y" class="section level3">
 <h3>Step 1: Estimating and testing the total effect (c) of Abuse (X) on Satisfaction (Y)</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">apim_stp1 &lt;-<span class="st">     </span><span class="kw">gls</span>(Sat_A ~<span class="st"> </span>-<span class="dv">1</span> +<span class="st"> </span>Woman +<span class="st"> </span>Man +<span class="st"> </span>Abuse_AW +<span class="st"> </span>Abuse_PW +<span class="st"> </span>Abuse_AM +<span class="st"> </span>Abuse_PM, 
-                     <span class="dt">na.action=</span>na.omit, <span class="dt">correlation=</span><span class="kw">corCompSymm</span> (<span class="dt">form=</span>~<span class="dv">1</span>|Dyad),
-                     <span class="dt">weights=</span><span class="kw">varIdent</span>(<span class="dt">form=</span>~<span class="dv">1</span>|Gender_A),<span class="dt">data=</span>riggsp)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">apim_stp1 &lt;-<span class="st"> </span><span class="kw">gls</span>(Sat_A ~<span class="st"> </span>-<span class="dv">1</span> +<span class="st"> </span>Woman +<span class="st"> </span>Man +<span class="st"> </span>Abuse_AW +<span class="st"> </span>Abuse_PW +<span class="st"> </span>Abuse_AM +<span class="st"> </span>Abuse_PM, 
+                 <span class="dt">na.action=</span>na.omit, <span class="dt">correlation=</span><span class="kw">corCompSymm</span> (<span class="dt">form=</span>~<span class="dv">1</span>|Dyad),
+                 <span class="dt">weights=</span><span class="kw">varIdent</span>(<span class="dt">form=</span>~<span class="dv">1</span>|Gender_A),<span class="dt">data=</span>riggsp)
 
 <span class="kw">summary</span>(apim_stp1)</code></pre></div>
 <pre><code>## Generalized least squares fit by REML
@@ -535,8 +644,8 @@ CI_PP_W =<span class="st"> </span><span class="kw">mmc</span>(part_M_a, part_W_b
 <td align="center">Actor-Actor: M</td>
 <td align="center">Xm -&gt; Mm -&gt; Ym</td>
 <td align="center">-0.091</td>
-<td align="center">0.021</td>
-<td align="center">-0.195</td>
+<td align="center">0.02</td>
+<td align="center">-0.197</td>
 <td align="center">-0.012</td>
 </tr>
 <tr class="even">
@@ -544,46 +653,46 @@ CI_PP_W =<span class="st"> </span><span class="kw">mmc</span>(part_M_a, part_W_b
 <td align="center">Xw -&gt; Mw -&gt; Yw</td>
 <td align="center">-0.142</td>
 <td align="center">0.002</td>
-<td align="center">-0.261</td>
+<td align="center">-0.26</td>
 <td align="center">-0.046</td>
 </tr>
 <tr class="odd">
 <td align="center">Partner-Partner: M</td>
 <td align="center">Xm -&gt; Mw -&gt; Ym</td>
 <td align="center">-0.017</td>
-<td align="center">0.512</td>
-<td align="center">-0.08</td>
-<td align="center">0.036</td>
+<td align="center">0.519</td>
+<td align="center">-0.079</td>
+<td align="center">0.035</td>
 </tr>
 <tr class="even">
 <td align="center">Partner-Partner: W</td>
 <td align="center">Xw -&gt; Mm -&gt; Yw</td>
 <td align="center">-0.026</td>
-<td align="center">0.3</td>
+<td align="center">0.299</td>
 <td align="center">-0.091</td>
-<td align="center">0.024</td>
+<td align="center">0.023</td>
 </tr>
 <tr class="odd">
 <td align="center">Actor-Partner: M</td>
 <td align="center">Xw -&gt; Mw -&gt; Ym</td>
 <td align="center">-0.109</td>
-<td align="center">0.015</td>
-<td align="center">-0.221</td>
+<td align="center">0.017</td>
+<td align="center">-0.218</td>
 <td align="center">-0.018</td>
 </tr>
 <tr class="even">
 <td align="center">Actor-Partner: W</td>
 <td align="center">Xm -&gt; Mm -&gt; Yw</td>
 <td align="center">-0.067</td>
-<td align="center">0.027</td>
+<td align="center">0.026</td>
 <td align="center">-0.158</td>
-<td align="center">-0.005</td>
+<td align="center">-0.006</td>
 </tr>
 <tr class="odd">
 <td align="center">Partner-Actor: M</td>
 <td align="center">Xw -&gt; Mm -&gt; Ym</td>
 <td align="center">-0.036</td>
-<td align="center">0.293</td>
+<td align="center">0.287</td>
 <td align="center">-0.114</td>
 <td align="center">0.031</td>
 </tr>
@@ -591,9 +700,9 @@ CI_PP_W =<span class="st"> </span><span class="kw">mmc</span>(part_M_a, part_W_b
 <td align="center">Partner-Actor: W</td>
 <td align="center">Xm -&gt; Mw -&gt; YW</td>
 <td align="center">-0.022</td>
-<td align="center">0.505</td>
-<td align="center">-0.099</td>
-<td align="center">0.046</td>
+<td align="center">0.508</td>
+<td align="center">-0.098</td>
+<td align="center">0.045</td>
 </tr>
 </tbody>
 </table>
@@ -852,32 +961,32 @@ CI_PP =<span class="st"> </span><span class="kw">mmc</span>(part_a, part_b, part
 <td align="center">X1 -&gt; M1 -&gt; Y1</td>
 <td align="center">-0.129</td>
 <td align="center">0</td>
-<td align="center">-0.203</td>
-<td align="center">-0.067</td>
+<td align="center">-0.202</td>
+<td align="center">-0.068</td>
 </tr>
 <tr class="even">
 <td align="center">Partner-Partner</td>
 <td align="center">X1 -&gt; M2 -&gt; Y1</td>
 <td align="center">-0.018</td>
-<td align="center">0.314</td>
+<td align="center">0.302</td>
 <td align="center">-0.058</td>
-<td align="center">0.016</td>
+<td align="center">0.017</td>
 </tr>
 <tr class="odd">
 <td align="center">Actor-Partner</td>
 <td align="center">X2 -&gt; M2 -&gt; Y1</td>
 <td align="center">-0.095</td>
 <td align="center">0</td>
-<td align="center">-0.161</td>
+<td align="center">-0.16</td>
 <td align="center">-0.041</td>
 </tr>
 <tr class="even">
 <td align="center">Partner-Actor</td>
 <td align="center">X1 -&gt; M2 -&gt; Y1</td>
 <td align="center">-0.024</td>
-<td align="center">0.312</td>
+<td align="center">0.313</td>
 <td align="center">-0.076</td>
-<td align="center">0.022</td>
+<td align="center">0.023</td>
 </tr>
 </tbody>
 </table>
