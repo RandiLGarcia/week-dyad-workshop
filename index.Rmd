@@ -36,7 +36,7 @@ fontsize: 12 pt
   + Late Afternoon Session 3:30-5:00
     - [Homework (optional)](Day 1_QUESTIONS.pdf)
     - Restructure and Do Runs on One's Own Data
-    - [Individual Meetings]((https://docs.google.com/spreadsheets/d/1enfIHEKDqw5wALxG3Qb140dnBXc74VRTc2Pr-oefLQo/edit?usp=sharing))
+    - [Individual Meetings](https://docs.google.com/spreadsheets/d/1enfIHEKDqw5wALxG3Qb140dnBXc74VRTc2Pr-oefLQo/edit?usp=sharing)
 
 ***
 
@@ -50,12 +50,12 @@ fontsize: 12 pt
   + Lecture and Lab 1:15-3:30
     - [Test of Distinguishability](Test_for_Distinguishability.html)
     - [Testing for Patterns](Patterns.html)
-    - Actor-Partner Interactions: [Slides](Actor Partner Interactions.pdf) and [Example](Actor-Partner Interactions.html)
+    - Actor-Partner Interactions: [Slides](Actor Partner Interactions.pdf) and [Example](Actor-Partner_Interactions.html)
 	  - [APIM_MM Dingy App](Dingy_Output.pdf)
   + Late Afternoon Session 3:30-5:00
     - [Homework (optional)](Day 2_QUESTIONS.pdf)
     - Do Runs on One's Own Data
-    - [Individual Meetings]((https://docs.google.com/spreadsheets/d/1enfIHEKDqw5wALxG3Qb140dnBXc74VRTc2Pr-oefLQo/edit?usp=sharing))
+    - [Individual Meetings](https://docs.google.com/spreadsheets/d/1enfIHEKDqw5wALxG3Qb140dnBXc74VRTc2Pr-oefLQo/edit?usp=sharing)
 
 ***
 
@@ -72,7 +72,7 @@ fontsize: 12 pt
   + Late Afternoon Session 3:30-5:00
     - [Homework (optional)](Day 3_QUESTIONS.pdf)
     - Do Runs on One's Own Data
-    - [Individual Meetings]((https://docs.google.com/spreadsheets/d/1enfIHEKDqw5wALxG3Qb140dnBXc74VRTc2Pr-oefLQo/edit?usp=sharing)) 
+    - [Individual Meetings](https://docs.google.com/spreadsheets/d/1enfIHEKDqw5wALxG3Qb140dnBXc74VRTc2Pr-oefLQo/edit?usp=sharing)
 
 ***
 
@@ -92,7 +92,7 @@ fontsize: 12 pt
   + Late Afternoon Session 3:30-5:00
     - [Homework (optional)](Day 4_QUESTIONS.pdf)
     - Do Runs on One's Own Data
-    - [Individual Meetings]((https://docs.google.com/spreadsheets/d/1enfIHEKDqw5wALxG3Qb140dnBXc74VRTc2Pr-oefLQo/edit?usp=sharing)) 
+    - [Individual Meetings](https://docs.google.com/spreadsheets/d/1enfIHEKDqw5wALxG3Qb140dnBXc74VRTc2Pr-oefLQo/edit?usp=sharing) 
 
 ***
 
@@ -105,8 +105,8 @@ fontsize: 12 pt
     - Alternative Models and Estimation Methods 
     - Alternative Dyadic Models
       - [Structural Equation Modeling (SEM)](CommonFateModel.html)
-      - [Generalized Linear Mixed Models](Genderalized_Linear_Mixed_Models___GEE.html)
-      - [Generalized Estimating Equations (GEE)](Genderalized_Linear_Mixed_Models___GEE.html)
+      - [Generalized Linear Mixed Models](Generalized_Linear_Mixed_Models___GEE.html)
+      - [Generalized Estimating Equations (GEE)](Generalized_Linear_Mixed_Models___GEE.html)
     - [Alternative Dyadic Designs](designs.pdf)
       - One-with-Many
       - Social Relations Model
