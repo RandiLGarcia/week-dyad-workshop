@@ -277,15 +277,15 @@ riggsp &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span clas
 <li>Add a <code>weights =</code> option the the <code>gls()</code> function to allow for different error variances for the two members. We are using the factor variable, <code>Genderstring</code>, here to make the output easier to read.</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">apim_di_int &lt;-<span class="st"> </span><span class="kw">gls</span>(Sat_A ~<span class="st"> </span>Anxiety_A +<span class="st"> </span>Anxiety_P +<span class="st"> </span>Gender_A
-                   +<span class="st"> </span>Anxiety_A*Gender_A +<span class="st"> </span>Anxiety_P*Gender_A,
+                      +<span class="st"> </span>Anxiety_A*Gender_A +<span class="st"> </span>Anxiety_P*Gender_A,
                    <span class="dt">data =</span> riggsp,
                    <span class="dt">correlation =</span> <span class="kw">corCompSymm</span>(<span class="dt">form=</span>~<span class="dv">1</span>|Dyad),
                    <span class="dt">weights =</span> <span class="kw">varIdent</span>(<span class="dt">form=</span>~<span class="dv">1</span>|Genderstring),
                    <span class="dt">na.action =</span> na.omit)
 
 <span class="co">#This model is equivalent to the one above.</span>
-apim_di_int &lt;-<span class="st"> </span>apim_di_int &lt;-<span class="st"> </span><span class="kw">gls</span>(Sat_A ~<span class="st"> </span>Anxiety_A*Gender_A 
-                                  +<span class="st"> </span>Anxiety_P*Gender_A,
+apim_di_int &lt;-<span class="st"> </span><span class="kw">gls</span>(Sat_A ~<span class="st"> </span>Anxiety_A*Gender_A 
+                      +<span class="st"> </span>Anxiety_P*Gender_A,
                    <span class="dt">data =</span> riggsp,
                    <span class="dt">correlation =</span> <span class="kw">corCompSymm</span>(<span class="dt">form=</span>~<span class="dv">1</span>|Dyad),
                    <span class="dt">weights =</span> <span class="kw">varIdent</span>(<span class="dt">form=</span>~<span class="dv">1</span>|Genderstring),
