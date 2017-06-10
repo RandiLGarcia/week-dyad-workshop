@@ -68,7 +68,7 @@ fontsize: 12 pt
   + Lecture and Lab 1:15-3:30
     - [Mediation Introduction](Mediation of the APIM.pdf)
     - [Mediation in the APIM](Mediation_in_the_APIM.html): Attachment Anxiety Mediating the Effect of Childhood Abuse on Satisfaction
-    - [APIMoM and APIMeM Apps](APIMemoM.pdf)	
+    - [APIMoM and APIMeM Apps](APIMeMoM.pdf)	
   + Late Afternoon Session 3:30-5:00
     - [Homework (optional)](Day 3_QUESTIONS.pdf)
     - Do Runs on One's Own Data
@@ -82,8 +82,8 @@ fontsize: 12 pt
     - [Introduction](Over Time_Intro.pdf)
     - [Kashy Dataset](Kashy Codebook.pdf)
     - Growth Curve Models: [Slides](Growth Curve.pdf) and [Examples](Growth_Curve_Modeling.html)  
-      - Individual Growth Curve
-      - Dyadic Growth Curves
+      -Individual Growth Curve  
+      -Dyadic Growth Curves  
   + Lunch 12:00 PM to 1:15 PM  
   + Lecture and Lab 1:15-3:30
     - [Repeated Measures Analysis](Repeated_Measures.html): Effect of Day and Gender on Satisfaction	
@@ -102,15 +102,14 @@ fontsize: 12 pt
     - [Presentation and Doing Dyadic Data Analysis Right](Presentation.pdf)
     - [DyadR](https://github.com/RandiLGarcia/dyadr)
     - [R: Advantages and Disadvantages](Advantages and Disadvantages of R.pdf)
-    - Alternative Models and Estimation Methods 
-    - Alternative Dyadic Models
-      - [Structural Equation Modeling (SEM)](CommonFateModel.html)
-      - [Generalized Linear Mixed Models](Generalized_Linear_Mixed_Models___GEE.html)
-      - [Generalized Estimating Equations (GEE)](Generalized_Linear_Mixed_Models___GEE.html)
-    - [Alternative Dyadic Designs](designs.pdf)
-      - One-with-Many
-      - Social Relations Model
-      - GAPIM
+    - Alternative Dyadic Models and Estimation Methods  
+      -[Structural Equation Modeling (SEM)](CommonFateModel.html)  
+      -[Generalized Linear Mixed Models](Generalized_Linear_Mixed_Models___GEE.html)  
+      -[Generalized Estimating Equations (GEE)](Generalized_Linear_Mixed_Models___GEE.html)  
+    - [Alternative Dyadic Designs](designs.pdf)  
+      -One-with-Many  
+      -Social Relations Model  
+      -GAPIM  
   + Group Lunch 12-1:15
 
 ***
@@ -131,8 +130,8 @@ fontsize: 12 pt
 
   + [dplyr cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
   + [ggplot2 cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)
-  + [RMarkdown cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
-    -[Advanced RMarkdown](http://rmarkdown.rstudio.com/authoring_pandoc_markdown.html)
+  + [RMarkdown cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)  
+    - [Advanced RMarkdown](http://rmarkdown.rstudio.com/authoring_pandoc_markdown.html)
     
 #Other Helpful Links
 
