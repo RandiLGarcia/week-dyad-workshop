@@ -50,7 +50,7 @@ fontsize: 12 pt
   + Lecture and Lab 1:15-3:30
     - [Test of Distinguishability](Test_for_Distinguishability.html)
     - [Testing for Patterns](Patterns.html)
-    - Actor-Partner Interactions: [Slides](Actor Partner Interactions.pdf) and [Example](Actor-Partner_Interactions.html)
+    - [Actor-Partner Interactions](Actor-Partner_Interactions.html)
 	  - [APIM_MM Dingy App](Dingy_Output.pdf)
   + Late Afternoon Session 3:30-5:00
     - [Homework (optional)](Day 2_QUESTIONS.pdf)
