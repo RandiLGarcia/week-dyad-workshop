@@ -138,5 +138,6 @@ fontsize: 12 pt
   + [UConn Map](http://maps.uconn.edu/index.php)
   + [Dave's Website](http://davidakenny.net/index.htm)
   + [DyadR page Webpage](http://davidakenny.net/DyadR/DyadRweb.htm)
+  + [Script to down all packages](install-packages.pdf)
   + [ggplot2 book by Hadley Wickham](http://ms.mcmaster.ca/~bolker/misc/ggplot2-book.pdf)
   + [R for Data Science by Garrett Grolemund](http://r4ds.had.co.nz/index.html)
