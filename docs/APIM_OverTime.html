@@ -248,16 +248,15 @@ div.tocify {
 
 <hr />
 <div id="read-in-the-dataset" class="section level1">
-<h1>Read in the dataset</h1>
+<h1>Read in the Dataset</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dyadr)
 <span class="kw">library</span>(nlme)
 
 kashy &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">file.choose</span>(), <span class="dt">header=</span><span class="ot">TRUE</span>)</code></pre></div>
-<p>Ignore this “error,” as it is not meaningful.</p>
 </div>
 <div id="over-time-apim" class="section level1">
 <h1>Over-Time APIM</h1>
-<p>X and Y are measured at multiple time and then pooled. The big advantage of this approach is now actor and partner effects become random variables.</p>
+<p>X and Y are measured at multiple times. The big advantage of this design over traditional APIM is that actor and partner effects become random variables.</p>
 <p>As an example, we run an APIM with Conflict as the X variable and Satisfaction as the Y variable. For each dyad, we have potentially 14 replications.</p>
 <div id="create-new-variables" class="section level2">
 <h2>Create New Variables</h2>
@@ -267,14 +266,20 @@ kashy$Actor_W =<span class="st"> </span>kashy$woman*kashy$AconflictC
 kashy$Partner_M =<span class="st"> </span>kashy$man*kashy$PconflictC
 kashy$Partner_W =<span class="st"> </span>kashy$woman*kashy$PconflictC
 obsid =<span class="st"> </span>kashy$Day<span class="dv">+14</span>*(kashy$DYADID<span class="dv">-1</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ctrl &lt;-<span class="st"> </span><span class="kw">lmeControl</span>(<span class="dt">msMaxIter=</span><span class="dv">10000</span>,<span class="dt">MaxIter=</span><span class="dv">10000</span>,<span class="dt">msMaxEval=</span><span class="dv">10000</span>,<span class="dt">returnObject=</span><span class="ot">TRUE</span>,<span class="dt">niterEM=</span><span class="dv">10000</span>,<span class="dt">nlmStepMax=</span><span class="dv">1000</span>)
+</div>
+<div id="analysis" class="section level2">
+<h2>Analysis</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ctrl &lt;-<span class="st"> </span><span class="kw">lmeControl</span>(<span class="dt">msMaxIter=</span><span class="dv">10000</span>,<span class="dt">MaxIter=</span><span class="dv">10000</span>,<span class="dt">msMaxEval=</span><span class="dv">10000</span>,
+                   <span class="dt">returnObject=</span><span class="ot">TRUE</span>,<span class="dt">niterEM=</span><span class="dv">10000</span>,<span class="dt">nlmStepMax=</span><span class="dv">1000</span>)
 
-apimot  &lt;-<span class="st"> </span>(<span class="kw">lme</span>(ASATISF ~<span class="st"> </span>man +<span class="st"> </span>woman +<span class="st"> </span>Actor_M +<span class="st"> </span>Actor_W +<span class="st"> </span>Partner_M +<span class="st"> </span>Partner_W  -<span class="st"> </span><span class="dv">1</span>, 
-                    <span class="dt">data =</span> kashy, 
-                    <span class="dt">random =</span> ~<span class="st"> </span>man +<span class="st"> </span>woman +<span class="st"> </span>Actor_M +<span class="st"> </span>Actor_W +<span class="st"> </span>Partner_M +<span class="st"> </span>Partner_W -<span class="dv">1</span> |DYADID,
-                    <span class="dt">correlation =</span> <span class="kw">corCompSymm</span>(<span class="dt">form =</span> ~<span class="dv">1</span>|DYADID/obsid),  
-                    <span class="dt">weights =</span> <span class="kw">varIdent</span>(<span class="dt">form =</span> ~<span class="dv">1</span>|GENDER),<span class="dt">control=</span>ctrl,
-                    <span class="dt">na.action =</span> na.omit))
+apimot  &lt;-<span class="st"> </span>(<span class="kw">lme</span>(ASATISF ~<span class="st"> </span>man +<span class="st"> </span>woman 
+                +<span class="st"> </span>Actor_M +<span class="st"> </span>Actor_W +<span class="st"> </span>Partner_M +<span class="st"> </span>Partner_W  -<span class="st"> </span><span class="dv">1</span>, 
+                <span class="dt">data =</span> kashy, 
+                <span class="dt">random =</span> ~<span class="st"> </span>man +<span class="st"> </span>woman 
+                +<span class="st"> </span>Actor_M +<span class="st"> </span>Actor_W +<span class="st"> </span>Partner_M +<span class="st"> </span>Partner_W -<span class="dv">1</span> |DYADID,
+                <span class="dt">correlation =</span> <span class="kw">corCompSymm</span>(<span class="dt">form =</span> ~<span class="dv">1</span>|DYADID/obsid),  
+                <span class="dt">weights =</span> <span class="kw">varIdent</span>(<span class="dt">form =</span> ~<span class="dv">1</span>|GENDER),<span class="dt">control=</span>ctrl,
+                <span class="dt">na.action =</span> na.omit))
 
 <span class="kw">smallsummary</span>(apimot)</code></pre></div>
 <pre><code>## Random effects:
@@ -311,10 +316,34 @@ apimot  &lt;-<span class="st"> </span>(<span class="kw">lme</span>(ASATISF ~<spa
 ## Partner_W -0.04781433  0.033699375</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimot),<span class="dv">1</span>,<span class="dv">2</span>)</code></pre></div>
 <pre><code>## [1] -0.1436162210  0.0435332840  0.0009703057</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimot),<span class="dv">1</span>,<span class="dv">2</span>,<span class="st">&quot;A&quot;</span>)</code></pre></div>
+<pre><code>## [1] 6.3359885 0.0553157 0.0000000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimot),<span class="dv">3</span>,<span class="dv">4</span>)</code></pre></div>
+<pre><code>## [1] 0.04427276 0.03115312 0.15527778</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimot),<span class="dv">3</span>,<span class="dv">4</span>,<span class="st">&quot;A&quot;</span>)</code></pre></div>
+<pre><code>## [1] -0.17139050  0.01542276  0.00000000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimot),<span class="dv">5</span>,<span class="dv">6</span>)</code></pre></div>
+<pre><code>## [1] -0.008029386  0.028431077  0.777624689</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimot),<span class="dv">5</span>,<span class="dv">6</span>,<span class="st">&quot;A&quot;</span>)</code></pre></div>
+<pre><code>## [1] -6.361949e-02  1.265924e-02  5.020251e-07</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimot),<span class="dv">3</span>,<span class="dv">5</span>)</code></pre></div>
+<pre><code>## [1] -0.08161994  0.03357117  0.01504680</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimot),<span class="dv">4</span>,<span class="dv">6</span>)</code></pre></div>
+<pre><code>## [1] -1.339221e-01  2.955561e-02  5.865225e-06</code></pre>
+<p>The intercepts differ by gender, something we have seen before.</p>
+<p>However, the actor and partner effects do not different differ by gender.</p>
+<p>The actor effects for both men and women are larger in absolute value (in this case more negative) than the partner effects.</p>
+<p>More detailed explanation of results are given for the person-centered analysis.</p>
 </div>
-<div id="person-centering" class="section level2">
-<h2>Person Centering</h2>
+</div>
+<div id="apim-over-time-with-person-centering" class="section level1">
+<h1>APIM Over-time with Person Centering</h1>
+<div id="compute-person-centered-variables" class="section level2">
+<h2>Compute person-centered variables</h2>
 <p>We subtract means and add them as a dyad-level predictor.</p>
+</div>
+<div id="analysis-1" class="section level2">
+<h2>Analysis</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">kashy$Actor_Mpc =<span class="st"> </span>kashy$man*kashy$AconflictCC
 kashy$Actor_Wpc =<span class="st"> </span>kashy$woman*kashy$AconflictCC
 kashy$Partner_Mpc =<span class="st"> </span>kashy$man*kashy$PconflictCC
@@ -326,19 +355,19 @@ kashy$M_MeanP =<span class="st"> </span>kashy$man*kashy$PconflictC_mean
 kashy$W_MeanP =<span class="st"> </span>kashy$woman*kashy$PconflictC_mean
 
 
-<span class="co"># kashy$M_MeanA</span>
-<span class="co"># kashy$W_MeanA</span>
-<span class="co"># kashy$M_MeanP</span>
-<span class="co"># kashy$W_MeanP</span>
 
+apimotpc  &lt;-<span class="st"> </span><span class="kw">lme</span>(ASATISF ~<span class="st"> </span>man +<span class="st"> </span>woman 
+                +<span class="st"> </span>Actor_Mpc +<span class="st"> </span>Actor_Wpc +<span class="st"> </span>Partner_Mpc +<span class="st"> </span>Partner_Wpc
+                +<span class="st"> </span>M_MeanA  +<span class="st"> </span>W_MeanA +<span class="st"> </span>M_MeanP +<span class="st"> </span>W_MeanP +<span class="st"> </span>-<span class="st"> </span><span class="dv">1</span>, 
+                <span class="dt">data =</span> kashy, 
+                <span class="dt">random =</span> ~<span class="st"> </span>man +<span class="st"> </span>woman +<span class="st"> </span>
+<span class="st">                      </span>Actor_Mpc +<span class="st"> </span>Actor_Wpc +<span class="st"> </span>Partner_Mpc +<span class="st"> </span>Partner_Wpc -<span class="dv">1</span>
+                      |DYADID,
+                <span class="dt">correlation =</span> <span class="kw">corCompSymm</span>(<span class="dt">form =</span> ~<span class="dv">1</span>|DYADID/obsid),  
+                <span class="dt">weights =</span> <span class="kw">varIdent</span>(<span class="dt">form =</span> ~<span class="dv">1</span>|GENDER),<span class="dt">control=</span>ctrl,
+                <span class="dt">na.action =</span> na.omit)
 
-
-apimotpc  &lt;-<span class="st"> </span><span class="kw">smallsummary</span>(<span class="kw">lme</span>(ASATISF ~<span class="st"> </span>man +<span class="st"> </span>woman +<span class="st"> </span>Actor_Mpc +<span class="st"> </span>Actor_Wpc +<span class="st"> </span>Partner_Mpc +<span class="st"> </span>Partner_Wpc
-                    +<span class="st"> </span>M_MeanA  +<span class="st"> </span>W_MeanA +<span class="st"> </span>M_MeanP +<span class="st"> </span>W_MeanP +<span class="st"> </span>-<span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> kashy, 
-                    <span class="dt">random =</span> ~<span class="st"> </span>man +<span class="st"> </span>woman +<span class="st"> </span>Actor_Mpc +<span class="st"> </span>Actor_Wpc +<span class="st"> </span>Partner_Mpc +<span class="st"> </span>Partner_Wpc -<span class="dv">1</span> |DYADID,
-                    <span class="dt">correlation =</span> <span class="kw">corCompSymm</span>(<span class="dt">form =</span> ~<span class="dv">1</span>|DYADID/obsid),  
-                    <span class="dt">weights =</span> <span class="kw">varIdent</span>(<span class="dt">form =</span> ~<span class="dv">1</span>|GENDER),<span class="dt">control=</span>ctrl,
-                    <span class="dt">na.action =</span> na.omit))</code></pre></div>
+<span class="kw">smallsummary</span>(apimotpc)</code></pre></div>
 <pre><code>## Random effects:
 ##  Formula: ~man + woman + Actor_Mpc + Actor_Wpc + Partner_Mpc + Partner_Wpc -      1 | DYADID
 ##  Structure: General positive-definite, Log-Cholesky parametrization
@@ -368,7 +397,6 @@ apimotpc  &lt;-<span class="st"> </span><span class="kw">smallsummary</span>(<sp
 ## W_MeanA     -0.23101458 0.08158276 2721  -2.831659 4.664755e-03
 ## M_MeanP     -0.23131519 0.09978333 2721  -2.318175 2.051361e-02
 ## W_MeanP     -0.22153146 0.08287547 2721  -2.673064 7.561064e-03</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">apimotpc</code></pre></div>
 <pre><code>##                    2.5%        97.5%
 ## man          6.78360847  6.944211904
 ## woman        6.79036870  7.112252860
@@ -380,17 +408,54 @@ apimotpc  &lt;-<span class="st"> </span><span class="kw">smallsummary</span>(<sp
 ## W_MeanA     -0.39091386 -0.071115299
 ## M_MeanP     -0.42688692 -0.035743468
 ## W_MeanP     -0.38396439 -0.059098526</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimotpc),<span class="dv">1</span>,<span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1] -0.137235442  0.043959946  0.001797312</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimotpc),<span class="dv">1</span>,<span class="dv">2</span>,<span class="st">&quot;A&quot;</span>)</code></pre></div>
+<pre><code>## [1] 6.32097090 0.05445965 0.00000000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimotpc),<span class="dv">3</span>,<span class="dv">4</span>)</code></pre></div>
+<pre><code>## [1] 0.04507702 0.03107899 0.14694651</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimotpc),<span class="dv">3</span>,<span class="dv">4</span>,<span class="st">&quot;A&quot;</span>)</code></pre></div>
+<pre><code>## [1] -0.17148679  0.01537215  0.00000000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimotpc),<span class="dv">5</span>,<span class="dv">6</span>)</code></pre></div>
+<pre><code>## [1] -0.003448439  0.028326309  0.903105091</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimotpc),<span class="dv">5</span>,<span class="dv">6</span>,<span class="st">&quot;A&quot;</span>)</code></pre></div>
+<pre><code>## [1] -6.083439e-02  1.263142e-02  1.463796e-06</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimotpc),<span class="dv">3</span>,<span class="dv">5</span>)</code></pre></div>
+<pre><code>## [1] -0.08638967  0.03373273  0.01043699</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimotpc),<span class="dv">4</span>,<span class="dv">6</span>)</code></pre></div>
+<pre><code>## [1] -1.349151e-01  2.955741e-02  5.006609e-06</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimotpc),<span class="dv">3</span>,<span class="dv">7</span>)</code></pre></div>
+<pre><code>## [1] 0.18159300 0.10250660 0.07647345</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimotpc),<span class="dv">4</span>,<span class="dv">8</span>)</code></pre></div>
+<pre><code>## [1] 0.03698928 0.08263015 0.65440677</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimotpc),<span class="dv">5</span>,<span class="dv">9</span>)</code></pre></div>
+<pre><code>## [1] 0.16875659 0.10165589 0.09689901</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimotpc),<span class="dv">6</span>,<span class="dv">10</span>)</code></pre></div>
+<pre><code>## [1] 0.16242129 0.08374125 0.05243301</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimotpc),<span class="dv">7</span>,<span class="dv">9</span>)</code></pre></div>
+<pre><code>## [1] -0.09922608  0.16453796  0.54646948</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(apimotpc),<span class="dv">8</span>,<span class="dv">10</span>)</code></pre></div>
+<pre><code>## [1] -0.009483119  0.134337969  0.943722873</code></pre>
 </div>
 <div id="summary" class="section level2">
 <h2>Summary</h2>
+<div id="overall" class="section level3">
+<h3>Overall</h3>
 <p>There is pleasantly enough little change that occurs due to person centering. Such a result suggest the the within and between person effects of Conflict on Satisfaction are fairly similar.</p>
+</div>
 <div id="fixed-effects" class="section level3">
 <h3>Fixed Effects</h3>
 <p>All effects are negative, but actor effects are larger than partner effects. One could test if coefficients are different, but we have not done this. So if your are curious make such tests. There do not appear to be gender differences in these effects.</p>
 </div>
 <div id="random-effects" class="section level3">
 <h3>Random Effects</h3>
-<p>It is interesting to note that random effect standard deviations for the partner effect are larger than the fixed effects. That means that a decent percentage of people have positive partner effects. Does it make sense to believe that one is more satisfied in the relationship on a given day, if one’s partner is feeling a lot of conflict on that day?</p>
+<p>It is interesting to note that random effect standard deviations for the partner effect are larger than their fixed effects. That means that a decent percentage of people have positive partner effects. Does it make sense to believe that one is more satisfied in the relationship on a given day, if one’s partner is feeling a lot of conflict on that day?</p>
+</div>
+<div id="difference-between-effects" class="section level3">
+<h3>Difference between Effects</h3>
+<p>As before, the intercepts differ by gender, the actor and partner effects do not different differ by gender, and the actor effects for both men and women are larger in absolute value (in this case more negative) than the partner effects.</p>
+<p>Despite the differences, the mean effect are not statistically larger than the within-person effects, which is consistent with the similarity in the two sets of analyses.</p>
+<p>The means show a clear couple-level model, whereas the within-person effects do not. Not clear what if anything this means, but it may be interesting.</p>
 </div>
 </div>
 </div>

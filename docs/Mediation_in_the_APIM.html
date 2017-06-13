@@ -246,6 +246,7 @@ div.tocify {
 </div>
 
 
+<hr />
 <div id="data-example" class="section level1">
 <h1>Data Example</h1>
 <p>Read in the pairwise dataset</p>
@@ -266,27 +267,20 @@ riggsp &lt;-<span class="st"> </span>riggsp %&gt;%
          <span class="dt">Anxiety_AW =</span> Anxiety_A*Woman,
          <span class="dt">Anxiety_PW =</span> Anxiety_P*Woman,
          <span class="dt">Anxiety_AM =</span> Anxiety_A*Man,
-         <span class="dt">Anxiety_PM =</span> Anxiety_P*Man)
-
-<span class="co"># riggsp$Woman = (riggsp$Gender_A+1)/2</span>
-<span class="co"># riggsp$Man  = -(riggsp$Gender_A-1)/2</span>
-<span class="co"># riggsp$Abuse_AW = riggsp$Abuse_A*riggsp$Woman</span>
-<span class="co"># riggsp$Abuse_PW = riggsp$Abuse_P*riggsp$Woman</span>
-<span class="co"># riggsp$Abuse_AM = riggsp$Abuse_A*riggsp$Man</span>
-<span class="co"># riggsp$Abuse_PM = riggsp$Abuse_P*riggsp$Man</span>
-<span class="co"># riggsp$Anxiety_AW = riggsp$Anxiety_A*riggsp$Woman</span>
-<span class="co"># riggsp$Anxiety_PW = riggsp$Anxiety_P*riggsp$Woman</span>
-<span class="co"># riggsp$Anxiety_AM = riggsp$Anxiety_A*riggsp$Man</span>
-<span class="co"># riggsp$Anxiety_PM = riggsp$Anxiety_P*riggsp$Man</span></code></pre></div>
-<div id="making-sure-the-x-variable-does-not-moderate-the-effect-of-the-mediator-on-the-outcome." class="section level2">
-<h2>Making sure the X variable does not moderate the effect of the mediator on the outcome.</h2>
-<div id="abuse-x-anxiety-m-and-their-interaction-xm-affecting-satisfaction-y" class="section level3">
-<h3>Abuse (X), Anxiety (M), and their interaction (XM) affecting Satisfaction (Y)</h3>
+         <span class="dt">Anxiety_PM =</span> Anxiety_P*Man)</code></pre></div>
+</div>
+<div id="test-of-moderation" class="section level1">
+<h1>Test of Moderation</h1>
+<p>Making sure the X variable does not moderate the effect of the mediator on the outcome.</p>
+<p>Abuse (X), Anxiety (M), and their interaction (XM) affecting Satisfaction (Y)</p>
 <p>Run with ML to test the eight possible interactions.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">apim_mm &lt;-<span class="st">  </span><span class="kw">gls</span>(Sat_A ~<span class="st"> </span>Gender_A +<span class="st"> </span>Anxiety_A +<span class="st"> </span>Anxiety_P +<span class="st"> </span>Abuse_A +<span class="st"> </span>Abuse_P
-                    +<span class="st"> </span>Anxiety_A*Abuse_A +<span class="st"> </span>Anxiety_P*Abuse_P +<span class="st"> </span>Anxiety_A*Abuse_P +<span class="st"> </span>Anxiety_P*Abuse_A 
-                    +<span class="st"> </span>Anxiety_A*Abuse_A*Gender_A +<span class="st"> </span>Anxiety_P*Abuse_P*Gender_A 
-                    +<span class="st"> </span>Anxiety_A*Abuse_P*Gender_A +<span class="st"> </span>Anxiety_P*Abuse_A*Gender_A,  
+                +<span class="st"> </span>Anxiety_A*Gender_A +<span class="st"> </span>Anxiety_P*Gender_A 
+                +<span class="st"> </span>Abuse_A*Gender_A +<span class="st"> </span>Abuse_P*Gender_A
+                +<span class="st"> </span>Anxiety_A*Abuse_A +<span class="st"> </span>Anxiety_P*Abuse_P 
+                +<span class="st"> </span>Anxiety_A*Abuse_P +<span class="st"> </span>Anxiety_P*Abuse_A 
+                +<span class="st"> </span>Anxiety_A*Abuse_A*Gender_A +<span class="st"> </span>Anxiety_P*Abuse_P*Gender_A 
+                +<span class="st"> </span>Anxiety_A*Abuse_P*Gender_A +<span class="st"> </span>Anxiety_P*Abuse_A*Gender_A,  
                 <span class="dt">na.action =</span> na.omit, 
                 <span class="dt">correlation =</span> <span class="kw">corCompSymm</span>(<span class="dt">form=</span>~<span class="dv">1</span>|Dyad),
                 <span class="dt">method=</span><span class="st">&quot;ML&quot;</span>,
@@ -307,14 +301,14 @@ riggsp &lt;-<span class="st"> </span>riggsp %&gt;%
 ## Anxiety_P                  -1.381625647 0.88402298 -1.56288431
 ## Abuse_A                    -0.295350337 0.25800041 -1.14476694
 ## Abuse_P                     0.116689008 0.25709274  0.45387904
+## Gender_A:Anxiety_A          0.734038536 1.09462475  0.67058463
+## Gender_A:Anxiety_P         -0.227870007 1.09366246 -0.20835497
+## Gender_A:Abuse_A            0.043821414 0.28698444  0.15269613
+## Gender_A:Abuse_P           -0.023931589 0.28616872 -0.08362755
 ## Anxiety_A:Abuse_A           0.059212258 0.07496588  0.78985614
 ## Anxiety_P:Abuse_P           0.024808552 0.07483961  0.33148958
 ## Anxiety_A:Abuse_P          -0.101048654 0.07357832 -1.37334830
 ## Anxiety_P:Abuse_A          -0.006059258 0.07367155 -0.08224692
-## Gender_A:Anxiety_A          0.734038536 1.09462475  0.67058463
-## Gender_A:Abuse_A            0.043821414 0.28698444  0.15269613
-## Gender_A:Anxiety_P         -0.227870007 1.09366246 -0.20835497
-## Gender_A:Abuse_P           -0.023931589 0.28616872 -0.08362755
 ## Gender_A:Anxiety_A:Abuse_A -0.101233626 0.07701949 -1.31438972
 ## Gender_A:Anxiety_P:Abuse_P -0.029941918 0.07689660 -0.38937897
 ## Gender_A:Anxiety_A:Abuse_P  0.023233047 0.07815637  0.29726363
@@ -326,14 +320,14 @@ riggsp &lt;-<span class="st"> </span>riggsp %&gt;%
 ## Anxiety_P                  1.191629e-01
 ## Abuse_A                    2.532432e-01
 ## Abuse_P                    6.502530e-01
+## Gender_A:Anxiety_A         5.030152e-01
+## Gender_A:Anxiety_P         8.350971e-01
+## Gender_A:Abuse_A           8.787434e-01
+## Gender_A:Abuse_P           9.334099e-01
 ## Anxiety_A:Abuse_A          4.302527e-01
 ## Anxiety_P:Abuse_P          7.405125e-01
 ## Anxiety_A:Abuse_P          1.706977e-01
 ## Anxiety_P:Abuse_A          9.345067e-01
-## Gender_A:Anxiety_A         5.030152e-01
-## Gender_A:Abuse_A           8.787434e-01
-## Gender_A:Anxiety_P         8.350971e-01
-## Gender_A:Abuse_P           9.334099e-01
 ## Gender_A:Anxiety_A:Abuse_A 1.897466e-01
 ## Gender_A:Anxiety_P:Abuse_P 6.972797e-01
 ## Gender_A:Anxiety_A:Abuse_P 7.664766e-01
@@ -345,21 +339,23 @@ riggsp &lt;-<span class="st"> </span>riggsp %&gt;%
 ## Anxiety_P                  -3.11427885  0.35102755
 ## Abuse_A                    -0.80102185  0.21032117
 ## Abuse_P                    -0.38720351  0.62058152
+## Gender_A:Anxiety_A         -1.41138655  2.87946362
+## Gender_A:Anxiety_P         -2.37140904  1.91566903
+## Gender_A:Abuse_A           -0.51865776  0.60630059
+## Gender_A:Abuse_P           -0.58481198  0.53694880
 ## Anxiety_A:Abuse_A          -0.08771816  0.20614268
 ## Anxiety_P:Abuse_P          -0.12187440  0.17149150
 ## Anxiety_A:Abuse_P          -0.24525950  0.04316219
 ## Anxiety_P:Abuse_A          -0.15045284  0.13833432
-## Gender_A:Anxiety_A         -1.41138655  2.87946362
-## Gender_A:Abuse_A           -0.51865776  0.60630059
-## Gender_A:Anxiety_P         -2.37140904  1.91566903
-## Gender_A:Abuse_P           -0.58481198  0.53694880
 ## Gender_A:Anxiety_A:Abuse_A -0.25218905  0.04972180
 ## Gender_A:Anxiety_P:Abuse_P -0.18065648  0.12077265
 ## Gender_A:Anxiety_A:Abuse_P -0.12995063  0.17641673
 ## Gender_A:Anxiety_P:Abuse_A -0.09541199  0.21129944</code></pre>
 <p>We do see that none of the 8 tests are significant, but to be sure we do combined tests of the 8 effects.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">apim_base &lt;-<span class="st">  </span><span class="kw">gls</span>(Sat_A ~<span class="st"> </span>Gender_A +<span class="st"> </span>Anxiety_A +<span class="st"> </span>Anxiety_P 
-                      +<span class="st"> </span>Abuse_A +<span class="st"> </span>Abuse_P,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">apim_base &lt;-<span class="st">  </span><span class="kw">gls</span>(Sat_A ~<span class="st"> </span>Gender_A +<span class="st"> </span>Anxiety_A +<span class="st"> </span>Anxiety_P  
+                  +<span class="st"> </span>Abuse_A +<span class="st"> </span>Abuse_P                     
+                  +<span class="st"> </span>Anxiety_A*Gender_A +<span class="st"> </span>Anxiety_P*Gender_A 
+                  +<span class="st"> </span>Abuse_A*Gender_A +<span class="st"> </span>Abuse_P*Gender_A,
                   <span class="dt">na.action =</span> na.omit, 
                   <span class="dt">correlation =</span> <span class="kw">corCompSymm</span>(<span class="dt">form=</span>~<span class="dv">1</span>|Dyad),
                   <span class="dt">method =</span> <span class="st">&quot;ML&quot;</span>,
@@ -369,60 +365,41 @@ riggsp &lt;-<span class="st"> </span>riggsp %&gt;%
 <span class="kw">anova</span>(apim_mm, apim_base)</code></pre></div>
 <pre><code>##           Model df      AIC      BIC    logLik   Test  L.Ratio p-value
 ## apim_mm       1 21 2008.145 2086.613 -983.0727                        
-## apim_base     2  9 1996.828 2030.457 -989.4139 1 vs 2 12.68238  0.3925</code></pre>
+## apim_base     2 13 2000.960 2049.535 -987.4800 1 vs 2 8.814498  0.3582</code></pre>
 <p>Thus, we get confirmation that the assumption of no moderated mediation is needed.</p>
 </div>
-</div>
+<div id="distinguishable-dyads" class="section level1">
+<h1>Distinguishable Dyads</h1>
 <div id="the-four-baron-kenny-steps-using-multilevel-modeling" class="section level2">
 <h2>The Four Baron &amp; Kenny Steps Using Multilevel Modeling</h2>
 <div id="step-1-estimating-and-testing-the-total-effect-c-of-abuse-x-on-satisfaction-y" class="section level3">
 <h3>Step 1: Estimating and testing the total effect (c) of Abuse (X) on Satisfaction (Y)</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">apim_stp1 &lt;-<span class="st"> </span><span class="kw">gls</span>(Sat_A ~<span class="st"> </span>-<span class="dv">1</span> +<span class="st"> </span>Woman +<span class="st"> </span>Man +<span class="st"> </span>Abuse_AW +<span class="st"> </span>Abuse_PW +<span class="st"> </span>Abuse_AM +<span class="st"> </span>Abuse_PM, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">apim_stp1 &lt;-<span class="st"> </span><span class="kw">gls</span>(Sat_A ~<span class="st"> </span>-<span class="dv">1</span> +<span class="st"> </span>Woman +<span class="st"> </span>Man 
+                 +<span class="st"> </span>Abuse_AW +<span class="st"> </span>Abuse_PW +<span class="st"> </span>Abuse_AM +<span class="st"> </span>Abuse_PM, 
                  <span class="dt">na.action=</span>na.omit, <span class="dt">correlation=</span><span class="kw">corCompSymm</span> (<span class="dt">form=</span>~<span class="dv">1</span>|Dyad),
                  <span class="dt">weights=</span><span class="kw">varIdent</span>(<span class="dt">form=</span>~<span class="dv">1</span>|Gender_A),<span class="dt">data=</span>riggsp)
 
-<span class="kw">summary</span>(apim_stp1)</code></pre></div>
-<pre><code>## Generalized least squares fit by REML
-##   Model: Sat_A ~ -1 + Woman + Man + Abuse_AW + Abuse_PW + Abuse_AM + Abuse_PM 
-##   Data: riggsp 
-##        AIC      BIC    logLik
-##   2029.176 2062.629 -1005.588
-## 
-## Correlation Structure: Compound symmetry
-##  Formula: ~1 | Dyad 
-##  Parameter estimate(s):
+<span class="kw">smallsummary</span>(apim_stp1)</code></pre></div>
+<pre><code>## Correlation structure of class corCompSymm representing
 ##       Rho 
 ## 0.6642598 
-## Variance function:
-##  Structure: Different standard deviations per stratum
-##  Formula: ~1 | Gender_A 
-##  Parameter estimates:
+## Variance function structure of class varIdent representing
 ##       -1        1 
 ## 1.000000 1.003592 
-## 
-## Coefficients:
-##             Value Std.Error   t-value p-value
-## Woman    50.59484 1.6479164 30.702311  0.0000
-## Man      48.00097 1.6420186 29.232900  0.0000
-## Abuse_AW -0.41784 0.1192335 -3.504349  0.0005
-## Abuse_PW -0.22503 0.1375659 -1.635776  0.1029
-## Abuse_AM -0.17955 0.1370736 -1.309870  0.1912
-## Abuse_PM -0.17439 0.1188068 -1.467819  0.1432
-## 
-##  Correlation: 
-##          Woman  Man    Abs_AW Abs_PW Abs_AM
-## Man       0.664                            
-## Abuse_AW -0.630 -0.419                     
-## Abuse_PW -0.644 -0.428 -0.076              
-## Abuse_AM -0.428 -0.644 -0.050  0.664       
-## Abuse_PM -0.419 -0.630  0.664 -0.050 -0.076
-## 
-## Standardized residuals:
-##        Min         Q1        Med         Q3        Max 
-## -3.3498296 -0.6549740  0.1276363  0.6879963  2.4455118 
-## 
-## Residual standard error: 7.121407 
-## Degrees of freedom: 310 total; 304 residual</code></pre>
+##               Value Std.Error   t-value      p-value
+## Woman    50.5948414 1.6479164 30.702311 3.672486e-95
+## Man      48.0009654 1.6420186 29.232900 2.551281e-90
+## Abuse_AW -0.4178359 0.1192335 -3.504349 5.265565e-04
+## Abuse_PW -0.2250270 0.1375659 -1.635776 1.029214e-01
+## Abuse_AM -0.1795486 0.1370736 -1.309870 1.912287e-01
+## Abuse_PM -0.1743869 0.1188068 -1.467819 1.431872e-01</code></pre>
+<pre><code>##               2.5 %      97.5 %
+## Woman    47.3649847 53.82469818
+## Man      44.7826681 51.21926266
+## Abuse_AW -0.6515294 -0.18414253
+## Abuse_PW -0.4946512  0.04459726
+## Abuse_AM -0.4482078  0.08911068
+## Abuse_PM -0.4072439  0.05847014</code></pre>
 <div id="interpretation" class="section level4">
 <h4>Interpretation:</h4>
 <p>All four paths are negative but only the Woman actor effects is statistically significant: Reporting more childhood abuse leads to less relationship satisfaction. Both these effects could be potentially mediated.</p>
@@ -430,52 +407,32 @@ riggsp &lt;-<span class="st"> </span>riggsp %&gt;%
 </div>
 <div id="step-2-testing-the-effects-of-the-abuse-x-on-anxiety-m." class="section level3">
 <h3>Step 2: Testing the effects of the Abuse (X) on Anxiety (M).</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">apim_stp2 &lt;-<span class="st">  </span><span class="kw">gls</span>(Anxiety_A ~<span class="st"> </span>-<span class="dv">1</span> +<span class="st"> </span>Woman +<span class="st"> </span>Man +<span class="st"> </span>Abuse_AW +<span class="st"> </span>Abuse_PW +<span class="st"> </span>Abuse_AM +<span class="st"> </span>Abuse_PM, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">apim_stp2 &lt;-<span class="st">  </span><span class="kw">gls</span>(Anxiety_A ~<span class="st"> </span>-<span class="dv">1</span> +<span class="st"> </span>Woman +<span class="st"> </span>Man 
+                     +<span class="st"> </span>Abuse_AW +<span class="st"> </span>Abuse_PW +<span class="st"> </span>Abuse_AM +<span class="st"> </span>Abuse_PM, 
                      <span class="dt">na.action=</span>na.omit, <span class="dt">correlation=</span><span class="kw">corCompSymm</span> (<span class="dt">form=</span>~<span class="dv">1</span>|Dyad),
                      <span class="dt">weights=</span><span class="kw">varIdent</span>(<span class="dt">form=</span>~<span class="dv">1</span>|Gender_A),<span class="dt">data=</span>riggsp)
 
-<span class="kw">summary</span>(apim_stp2)</code></pre></div>
-<pre><code>## Generalized least squares fit by REML
-##   Model: Anxiety_A ~ -1 + Woman + Man + Abuse_AW + Abuse_PW + Abuse_AM +      Abuse_PM 
-##   Data: riggsp 
-##        AIC      BIC   logLik
-##   1020.916 1054.369 -501.458
-## 
-## Correlation Structure: Compound symmetry
-##  Formula: ~1 | Dyad 
-##  Parameter estimate(s):
+<span class="kw">smallsummary</span>(apim_stp2)</code></pre></div>
+<pre><code>## Correlation structure of class corCompSymm representing
 ##       Rho 
 ## 0.1656898 
-## Variance function:
-##  Structure: Different standard deviations per stratum
-##  Formula: ~1 | Gender_A 
-##  Parameter estimates:
+## Variance function structure of class varIdent representing
 ##        -1         1 
 ## 1.0000000 0.9013311 
-## 
-## Coefficients:
-##              Value  Std.Error  t-value p-value
-## Woman    1.9282095 0.25895657 7.446073  0.0000
-## Man      1.9628639 0.28730460 6.831996  0.0000
-## Abuse_AW 0.0931232 0.01873657 4.970127  0.0000
-## Abuse_PW 0.0143214 0.02161736 0.662495  0.5082
-## Abuse_AM 0.0556492 0.02398381 2.320280  0.0210
-## Abuse_PM 0.0218031 0.02078767 1.048848  0.2951
-## 
-##  Correlation: 
-##          Woman  Man    Abs_AW Abs_PW Abs_AM
-## Man       0.166                            
-## Abuse_AW -0.630 -0.104                     
-## Abuse_PW -0.644 -0.107 -0.076              
-## Abuse_AM -0.107 -0.644 -0.013  0.166       
-## Abuse_PM -0.104 -0.630  0.166 -0.013 -0.076
-## 
-## Standardized residuals:
-##         Min          Q1         Med          Q3         Max 
-## -2.25331493 -0.68269603  0.04602541  0.60969024  2.30644508 
-## 
-## Residual standard error: 1.246035 
-## Degrees of freedom: 310 total; 304 residual</code></pre>
+##               Value  Std.Error   t-value      p-value
+## Woman    1.92820948 0.25895657 7.4460728 9.986380e-13
+## Man      1.96286390 0.28730460 6.8319961 4.573890e-11
+## Abuse_AW 0.09312315 0.01873657 4.9701275 1.119389e-06
+## Abuse_PW 0.01432140 0.02161736 0.6624955 5.081557e-01
+## Abuse_AM 0.05564915 0.02398381 2.3202797 2.098756e-02
+## Abuse_PM 0.02180310 0.02078767 1.0488477 2.950814e-01</code></pre>
+<pre><code>##                 2.5 %     97.5 %
+## Woman     1.420663924 2.43575503
+## Man       1.399757236 2.52597056
+## Abuse_AW  0.056400146 0.12984616
+## Abuse_PW -0.028047839 0.05669064
+## Abuse_AM  0.008641744 0.10265656
+## Abuse_PM -0.018939984 0.06254618</code></pre>
 <div id="interpretation-1" class="section level4">
 <h4>Interpretation:</h4>
 <p>All four paths of the “a” paths are positive but only the two actor effects are statistically significant: More childhood abuse leads at anxious attachment for yourself, but not for your partner.</p>
@@ -484,72 +441,42 @@ riggsp &lt;-<span class="st"> </span>riggsp %&gt;%
 <div id="steps-3-and-4-testing-the-effects-of-the-anxiety-m-and-abuse-x-on-the-satisfaction-y." class="section level3">
 <h3>Steps 3 and 4: Testing the effects of the Anxiety (M) and Abuse (X) on the Satisfaction (Y).</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">apim_stp34 &lt;-<span class="st">  </span><span class="kw">gls</span>(Sat_A ~<span class="st"> </span>-<span class="dv">1</span> +<span class="st"> </span>Woman +<span class="st"> </span>Man 
-                              +<span class="st"> </span>Anxiety_AW +<span class="st"> </span>Anxiety_PW +<span class="st"> </span>Anxiety_AM +<span class="st"> </span>Anxiety_PM 
-                              +<span class="st"> </span>Abuse_AW +<span class="st"> </span>Abuse_PW +<span class="st"> </span>Abuse_AM +<span class="st"> </span>Abuse_PM, 
-                     <span class="dt">na.action=</span>na.omit, <span class="dt">correlation=</span><span class="kw">corCompSymm</span> (<span class="dt">form=</span>~<span class="dv">1</span>|Dyad),
+                     +<span class="st"> </span>Anxiety_AW +<span class="st"> </span>Anxiety_PW +<span class="st"> </span>Anxiety_AM +<span class="st"> </span>Anxiety_PM 
+                     +<span class="st"> </span>Abuse_AW +<span class="st"> </span>Abuse_PW +<span class="st"> </span>Abuse_AM +<span class="st"> </span>Abuse_PM, 
+                     <span class="dt">na.action=</span>na.omit, 
+                     <span class="dt">correlation=</span><span class="kw">corCompSymm</span> (<span class="dt">form=</span>~<span class="dv">1</span>|Dyad),
                      <span class="dt">weights=</span><span class="kw">varIdent</span>(<span class="dt">form=</span>~<span class="dv">1</span>|Gender_A),<span class="dt">data=</span>riggsp)
-
-
-<span class="kw">summary</span>(apim_stp34)</code></pre></div>
-<pre><code>## Generalized least squares fit by REML
-##   Model: Sat_A ~ -1 + Woman + Man + Anxiety_AW + Anxiety_PW + Anxiety_AM +      Anxiety_PM + Abuse_AW + Abuse_PW + Abuse_AM + Abuse_PM 
-##   Data: riggsp 
-##        AIC      BIC    logLik
-##   2010.746 2058.895 -992.3729
-## 
-## Correlation Structure: Compound symmetry
-##  Formula: ~1 | Dyad 
-##  Parameter estimate(s):
+<span class="kw">smallsummary</span>(apim_stp34)</code></pre></div>
+<pre><code>## Correlation structure of class corCompSymm representing
 ##       Rho 
 ## 0.6201065 
-## Variance function:
-##  Structure: Different standard deviations per stratum
-##  Formula: ~1 | Gender_A 
-##  Parameter estimates:
+## Variance function structure of class varIdent representing
 ##       -1        1 
 ## 1.000000 1.011957 
-## 
-## Coefficients:
-##               Value Std.Error   t-value p-value
-## Woman      55.90974 1.9555514 28.590270  0.0000
-## Man        53.46142 1.9324453 27.665166  0.0000
-## Anxiety_AW -1.52500 0.4946305 -3.083102  0.0022
-## Anxiety_PW -1.20966 0.4458259 -2.713292  0.0070
-## Anxiety_AM -1.63413 0.4405582 -3.709220  0.0002
-## Anxiety_PM -1.16838 0.4887861 -2.390375  0.0174
-## Abuse_AW   -0.24945 0.1215098 -2.052914  0.0409
-## Abuse_PW   -0.13587 0.1323209 -1.026826  0.3053
-## Abuse_AM   -0.07188 0.1307574 -0.549704  0.5829
-## Abuse_PM   -0.02995 0.1200741 -0.249466  0.8032
-## 
-##  Correlation: 
-##            Woman  Man    Anx_AW Anx_PW Anx_AM Anx_PM Abs_AW Abs_PW Abs_AM
-## Man         0.620                                                        
-## Anxiety_AW -0.414 -0.256                                                 
-## Anxiety_PW -0.367 -0.227 -0.166                                          
-## Anxiety_AM -0.227 -0.367 -0.103  0.620                                   
-## Anxiety_PM -0.256 -0.414  0.620 -0.103 -0.166                            
-## Abuse_AW   -0.279 -0.173 -0.366 -0.017 -0.011 -0.227                     
-## Abuse_PW   -0.413 -0.256 -0.022 -0.179 -0.111 -0.014 -0.046              
-## Abuse_AM   -0.256 -0.413 -0.014 -0.111 -0.179 -0.022 -0.029  0.620       
-## Abuse_PM   -0.173 -0.279 -0.227 -0.011 -0.017 -0.366  0.620 -0.029 -0.046
-## 
-## Standardized residuals:
-##         Min          Q1         Med          Q3         Max 
-## -3.18310989 -0.68889116  0.08800237  0.60820168  2.42181090 
-## 
-## Residual standard error: 6.674376 
-## Degrees of freedom: 310 total; 300 residual</code></pre>
-<div id="interpretation-2" class="section level4">
-<h4>Interpretation:</h4>
+##                  Value Std.Error    t-value      p-value
+## Woman      55.90974377 1.9555514 28.5902703 1.166968e-87
+## Man        53.46141980 1.9324453 27.6651659 1.506313e-84
+## Anxiety_AW -1.52499622 0.4946305 -3.0831020 2.239010e-03
+## Anxiety_PW -1.20965605 0.4458259 -2.7132924 7.046849e-03
+## Anxiety_AM -1.63412710 0.4405582 -3.7092197 2.476541e-04
+## Anxiety_PM -1.16838204 0.4887861 -2.3903749 1.744792e-02
+## Abuse_AW   -0.24944923 0.1215098 -2.0529139 4.094799e-02
+## Abuse_PW   -0.13587054 0.1323209 -1.0268264 3.053294e-01
+## Abuse_AM   -0.07187791 0.1307574 -0.5497044 5.829311e-01
+## Abuse_PM   -0.02995445 0.1200741 -0.2494663 8.031708e-01</code></pre>
+<pre><code>##                 2.5 %      97.5 %
+## Woman      52.0769334 59.74255413
+## Man        49.6738966 57.24894299
+## Anxiety_AW -2.4944542 -0.55553829
+## Anxiety_PW -2.0834588 -0.33585331
+## Anxiety_AM -2.4976053 -0.77064891
+## Anxiety_PM -2.1263852 -0.21037889
+## Abuse_AW   -0.4876041 -0.01129433
+## Abuse_PW   -0.3952146  0.12347356
+## Abuse_AM   -0.3281577  0.18440187
+## Abuse_PM   -0.2652954  0.20538650</code></pre>
 <p><strong>Step 3</strong>: All four “b” paths from Anxiety to Satisfaction are negative and statistically significant: Having a more anxious attachment style leads to less satisfaction for you and your partner, even after controlling for childhood abuse.</p>
 <p><strong>Step 4</strong>: All paths from Abuse to Satisfaction, c’, are negative but only the actor effect for women is statistically significant: Being abused as a child leads to lower levels of satisfaction, even after controlling for yours and your partner’s anxious attachment.</p>
-</div>
-</div>
-</div>
-</div>
-<div id="compute-the-eight-indirect-effects" class="section level1">
-<h1>Compute the Eight Indirect Effects</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a or X --&gt; M effects and standard errors</span>
 act_M_a &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(apim_stp2))[<span class="dv">5</span>,<span class="dv">1</span>]
 act_W_a &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(apim_stp2))[<span class="dv">3</span>,<span class="dv">1</span>]
@@ -559,9 +486,6 @@ act_M_a_se &lt;-<span class="st"> </span><span class="kw">coef</span>(<span clas
 act_W_a_se &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(apim_stp2))[<span class="dv">3</span>,<span class="dv">2</span>]
 part_M_a_se &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(apim_stp2))[<span class="dv">6</span>,<span class="dv">2</span>]
 part_W_a_se &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(apim_stp2))[<span class="dv">4</span>,<span class="dv">2</span>]
-
-
-
 <span class="co"># b or M --&gt; Y effects</span>
 act_M_b &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(apim_stp34))[<span class="dv">5</span>,<span class="dv">1</span>]
 act_W_b &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(apim_stp34))[<span class="dv">3</span>,<span class="dv">1</span>]
@@ -571,24 +495,18 @@ act_M_b_se &lt;-<span class="st"> </span><span class="kw">coef</span>(<span clas
 act_W_b_se &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(apim_stp34))[<span class="dv">3</span>,<span class="dv">2</span>]
 part_M_b_se &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(apim_stp34))[<span class="dv">6</span>,<span class="dv">2</span>]
 part_W_b_se &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(apim_stp34))[<span class="dv">4</span>,<span class="dv">2</span>]
-
-
 <span class="co"># c or X --&gt; Y total effects </span>
 act_M_c &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(apim_stp1))[<span class="dv">5</span>,<span class="dv">1</span>]
 act_W_c &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(apim_stp1))[<span class="dv">3</span>,<span class="dv">1</span>]
 part_M_c &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(apim_stp1))[<span class="dv">6</span>,<span class="dv">1</span>]
 part_W_c &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(apim_stp1))[<span class="dv">4</span>,<span class="dv">1</span>]
-
 <span class="co"># cp or X --&gt; Y direct effects </span>
-
 act_M_cp &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(apim_stp34))[<span class="dv">9</span>,<span class="dv">1</span>]
 act_W_cp &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(apim_stp34))[<span class="dv">7</span>,<span class="dv">1</span>]
 part_M_cp &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(apim_stp34))[<span class="dv">10</span>,<span class="dv">1</span>]
 part_W_cp &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(apim_stp34))[<span class="dv">8</span>,<span class="dv">1</span>]
 
-
 <span class="co">#The Eight Indirect Effects</span>
-
 <span class="co">#  Actor-Actor</span>
 AA_M_IE &lt;-<span class="st"> </span>act_M_a*act_M_b
 AA_W_IE &lt;-<span class="st"> </span>act_W_a*act_W_b
@@ -601,9 +519,6 @@ PA_W_IE &lt;-<span class="st"> </span>part_W_a*act_W_b
 <span class="co">#  Partner-Partner</span>
 PP_M_IE &lt;-<span class="st"> </span>part_W_a*part_M_b
 PP_W_IE &lt;-<span class="st"> </span>part_M_a*part_W_b
-
-
-
 
 <span class="co">#Testing Indirect Effects Using Multilevel Modeling</span>
 
@@ -626,8 +541,10 @@ CI_PA_W =<span class="st"> </span><span class="kw">mmc</span>(part_W_a, act_W_b,
 CI_PP_M =<span class="st"> </span><span class="kw">mmc</span>(part_W_a, part_M_b, part_W_a_se, part_M_b_se)
 <span class="co"># The 95% confidence interval for Women PP indrect effect:</span>
 CI_PP_W =<span class="st"> </span><span class="kw">mmc</span>(part_M_a, part_W_b, part_M_a_se, part_W_b_se)</code></pre></div>
-<div id="summary-of-indirect-effects" class="section level2">
-<h2>Summary of Indirect Effects</h2>
+</div>
+</div>
+<div id="indirect-effects" class="section level2">
+<h2>Indirect Effects</h2>
 <table>
 <thead>
 <tr class="header">
@@ -635,7 +552,7 @@ CI_PP_W =<span class="st"> </span><span class="kw">mmc</span>(part_M_a, part_W_b
 <th align="center">Indirect Effects</th>
 <th align="center">Estimate</th>
 <th align="center">p</th>
-<th align="center">95% CI<sup>a</sup> Lower</th>
+<th align="center">95% CI Lower</th>
 <th align="center">Upper</th>
 </tr>
 </thead>
@@ -645,23 +562,23 @@ CI_PP_W =<span class="st"> </span><span class="kw">mmc</span>(part_M_a, part_W_b
 <td align="center">Xm -&gt; Mm -&gt; Ym</td>
 <td align="center">-0.091</td>
 <td align="center">0.02</td>
-<td align="center">-0.197</td>
+<td align="center">-0.196</td>
 <td align="center">-0.012</td>
 </tr>
 <tr class="even">
 <td align="center">Actor-Actor: W</td>
 <td align="center">Xw -&gt; Mw -&gt; Yw</td>
 <td align="center">-0.142</td>
-<td align="center">0.002</td>
-<td align="center">-0.26</td>
+<td align="center">0.001</td>
+<td align="center">-0.262</td>
 <td align="center">-0.046</td>
 </tr>
 <tr class="odd">
 <td align="center">Partner-Partner: M</td>
 <td align="center">Xm -&gt; Mw -&gt; Ym</td>
 <td align="center">-0.017</td>
-<td align="center">0.519</td>
-<td align="center">-0.079</td>
+<td align="center">0.518</td>
+<td align="center">-0.081</td>
 <td align="center">0.035</td>
 </tr>
 <tr class="even">
@@ -676,9 +593,9 @@ CI_PP_W =<span class="st"> </span><span class="kw">mmc</span>(part_M_a, part_W_b
 <td align="center">Actor-Partner: M</td>
 <td align="center">Xw -&gt; Mw -&gt; Ym</td>
 <td align="center">-0.109</td>
-<td align="center">0.017</td>
-<td align="center">-0.218</td>
-<td align="center">-0.018</td>
+<td align="center">0.016</td>
+<td align="center">-0.219</td>
+<td align="center">-0.019</td>
 </tr>
 <tr class="even">
 <td align="center">Actor-Partner: W</td>
@@ -692,31 +609,31 @@ CI_PP_W =<span class="st"> </span><span class="kw">mmc</span>(part_M_a, part_W_b
 <td align="center">Partner-Actor: M</td>
 <td align="center">Xw -&gt; Mm -&gt; Ym</td>
 <td align="center">-0.036</td>
-<td align="center">0.287</td>
+<td align="center">0.296</td>
 <td align="center">-0.114</td>
-<td align="center">0.031</td>
+<td align="center">0.032</td>
 </tr>
 <tr class="even">
 <td align="center">Partner-Actor: W</td>
 <td align="center">Xm -&gt; Mw -&gt; YW</td>
 <td align="center">-0.022</td>
-<td align="center">0.508</td>
-<td align="center">-0.098</td>
+<td align="center">0.507</td>
+<td align="center">-0.099</td>
 <td align="center">0.045</td>
 </tr>
 </tbody>
 </table>
 <p>Note that p value and lower and upper limits of the confidence interval will differ slightly because they are based on Monte Carlo estimates.</p>
 </div>
-<div id="summary-direct-and-total-effects" class="section level2">
-<h2>Summary Direct and Total Effects</h2>
+<div id="direct-and-total-effects" class="section level2">
+<h2>Direct and Total Effects</h2>
 <table>
 <thead>
 <tr class="header">
 <th align="center">Name</th>
 <th align="center">Direct Effects</th>
 <th align="center">Direct</th>
-<th align="center">Total<sup>a</sup></th>
+<th align="center">Total</th>
 <th align="center">% Mediated</th>
 </tr>
 </thead>
@@ -751,142 +668,90 @@ CI_PP_W =<span class="st"> </span><span class="kw">mmc</span>(part_M_a, part_W_b
 </tr>
 </tbody>
 </table>
-<p>Note that <code>% Mediated</code> equals <code>ab/c</code> or equivalently <code>1 - c'/c</code>. This value can be larger than one or negative. Make sure that <code>c</code> is substantial before computing these values.</p>
-<div id="interpretation-3" class="section level4">
-<h4>Interpretation:</h4>
+<p>Note that <code>% Mediated</code> equals <code>ab/c</code> or equivalently <code>1 - c'/c</code>. This value can be larger than one or negative. Make sure that the total effect is non-trivial before interpreting these values.</p>
+</div>
+<div id="interpretation-2" class="section level2">
+<h2>Interpretation</h2>
 <p><strong>Actor-Actor: Men</strong> —Men who report more abuse are more anxiously attached and are then less satisfied.<br />
 <strong>Actor-Actor: Women</strong> —Women who report more abuse are more anxiously attached and are then less satisfied.<br />
-<strong>Partner-Partner: Men</strong> —Men who report more abuse have partners who are more anxiously attached and they in turn are less satisfied. <strong>Partner-Partner: Women</strong> —Women who report more abuse have partners who are more anxiously attached and they in turn are less satisfied. <strong>Actor-Partner: Men</strong> —Women who report more abuse are more anxiously attached and their male partners in turn are less satisfied. <strong>Actor-Partner: Women</strong> —Men who report more abuse are more anxiously attached and their female partners in turn are less satisfied.<br />
+<strong>Partner-Partner: Men</strong> —Men who report more abuse have partners who are more anxiously attached and they in turn are less satisfied.<br />
+<strong>Partner-Partner: Women</strong> —Women who report more abuse have partners who are more anxiously attached and they in turn are less satisfied.<br />
+<strong>Actor-Partner: Men</strong> —Women who report more abuse are more anxiously attached and their male partners in turn are less satisfied.<br />
+<strong>Actor-Partner: Women</strong> —Men who report more abuse are more anxiously attached and their female partners in turn are less satisfied.<br />
 <strong>Partner-Actor: Men</strong> —Women who report more abuse have male partners who are more anxiously attached and the Men are less satisfied.<br />
-<strong>Partner-Actor: Women</strong> —Men who report more abuse have male partners who are more anxiously attached and the Men are less satisfied.</p>
-<hr />
+<strong>Partner-Actor: Women</strong> —Men who report more abuse have male partners who are more anxiously attached and the Men are less satisfied.<br />
+***</p>
 </div>
 </div>
-<div id="indistinguishable-gender-ignored" class="section level2">
-<h2>Indistinguishable: Gender Ignored</h2>
+<div id="indistinguishable-gender-ignored" class="section level1">
+<h1>Indistinguishable: Gender Ignored</h1>
+<div id="baron-kenny-steps" class="section level2">
+<h2>Baron &amp; Kenny Steps</h2>
+<div id="step-1" class="section level3">
+<h3>Step 1</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">step1i  =<span class="st"> </span><span class="kw">gls</span>(Sat_A ~<span class="st"> </span>Abuse_A +<span class="st"> </span>Abuse_P , 
                  <span class="dt">na.action=</span>na.omit, 
                  <span class="dt">correlation=</span><span class="kw">corCompSymm</span> (<span class="dt">form=</span>~<span class="dv">1</span>|Dyad),
                  <span class="dt">data=</span>riggsp)
-
-
-<span class="kw">summary</span>(step1i)</code></pre></div>
-<pre><code>## Generalized least squares fit by REML
-##   Model: Sat_A ~ Abuse_A + Abuse_P 
-##   Data: riggsp 
-##        AIC      BIC    logLik
-##   2022.168 2040.803 -1006.084
-## 
-## Correlation Structure: Compound symmetry
-##  Formula: ~1 | Dyad 
-##  Parameter estimate(s):
+<span class="kw">smallsummary</span>(step1i)</code></pre></div>
+<pre><code>## Correlation structure of class corCompSymm representing
 ##       Rho 
 ## 0.6591908 
-## 
-## Coefficients:
-##                Value Std.Error  t-value p-value
-## (Intercept) 49.35607 1.4933345 33.05091  0.0000
-## Abuse_A     -0.31527 0.0873467 -3.60936  0.0004
-## Abuse_P     -0.19553 0.0873467 -2.23856  0.0259
-## 
-##  Correlation: 
-##         (Intr) Abus_A
-## Abuse_A -0.844       
-## Abuse_P -0.844  0.624
-## 
-## Standardized residuals:
-##        Min         Q1        Med         Q3        Max 
-## -3.3740551 -0.6385368  0.1451787  0.6907408  2.5038689 
-## 
-## Residual standard error: 7.128683 
-## Degrees of freedom: 310 total; 307 residual</code></pre>
-<div id="interpretation-4" class="section level4">
-<h4>Interpretation:</h4>
+## NULL
+##                  Value  Std.Error   t-value       p-value
+## (Intercept) 49.3560673 1.49333447 33.050913 3.862235e-103
+## Abuse_A     -0.3152660 0.08734672 -3.609363  3.583052e-04
+## Abuse_P     -0.1955307 0.08734672 -2.238558  2.590117e-02</code></pre>
+<pre><code>##                  2.5 %      97.5 %
+## (Intercept) 46.4291855 52.28294907
+## Abuse_A     -0.4864624 -0.14406955
+## Abuse_P     -0.3667271 -0.02433425</code></pre>
 <p>Both actor and partner effects are statistically significant.</p>
+</div>
+<div id="step-2" class="section level3">
+<h3>Step 2</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">step2i  =<span class="st"> </span><span class="kw">gls</span>(Anxiety_A ~<span class="st"> </span>Abuse_A +<span class="st"> </span>Abuse_P , 
                  <span class="dt">na.action=</span>na.omit, 
                  <span class="dt">correlation=</span><span class="kw">corCompSymm</span> (<span class="dt">form=</span>~<span class="dv">1</span>|Dyad),
                  <span class="dt">data=</span>riggsp)
-
-
-
-<span class="kw">summary</span>(step2i)</code></pre></div>
-<pre><code>## Generalized least squares fit by REML
-##   Model: Anxiety_A ~ Abuse_A + Abuse_P 
-##   Data: riggsp 
-##        AIC      BIC    logLik
-##   1006.794 1025.428 -498.3971
-## 
-## Correlation Structure: Compound symmetry
-##  Formula: ~1 | Dyad 
-##  Parameter estimate(s):
+<span class="kw">smallsummary</span>(step2i)</code></pre></div>
+<pre><code>## Correlation structure of class corCompSymm representing
 ##       Rho 
 ## 0.1581534 
-## 
-## Coefficients:
-##                 Value  Std.Error  t-value p-value
-## (Intercept) 1.9316020 0.20811463 9.281433  0.0000
-## Abuse_A     0.0802842 0.01479266 5.427301  0.0000
-## Abuse_P     0.0151343 0.01479266 1.023097  0.3071
-## 
-##  Correlation: 
-##         (Intr) Abus_A
-## Abuse_A -0.695       
-## Abuse_P -0.695  0.100
-## 
-## Standardized residuals:
-##         Min          Q1         Med          Q3         Max 
-## -2.14806665 -0.68967023  0.07578438  0.61050598  2.33350518 
-## 
-## Residual standard error: 1.189104 
-## Degrees of freedom: 310 total; 307 residual</code></pre>
-</div>
-<div id="interpretation-5" class="section level4">
-<h4>Interpretation:</h4>
+## NULL
+##                  Value  Std.Error  t-value      p-value
+## (Intercept) 1.93160204 0.20811463 9.281433 3.123902e-18
+## Abuse_A     0.08028420 0.01479266 5.427301 1.163164e-07
+## Abuse_P     0.01513433 0.01479266 1.023097 3.070674e-01</code></pre>
+<pre><code>##                   2.5 %    97.5 %
+## (Intercept)  1.52370487 2.3394992
+## Abuse_A      0.05129112 0.1092773
+## Abuse_P     -0.01385875 0.0441274</code></pre>
 <p>Only the actor effect is statistically significant.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">step34i  =<span class="st"> </span><span class="kw">gls</span>(Sat_A ~<span class="st"> </span>Anxiety_A +<span class="st"> </span>Anxiety_P +<span class="st"> </span>Abuse_A +<span class="st"> </span>Abuse_P , 
+</div>
+<div id="steps-3-and-4" class="section level3">
+<h3>Steps 3 and 4</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">step34i  =<span class="st"> </span><span class="kw">gls</span>(Sat_A ~<span class="st"> </span>Anxiety_A +<span class="st"> </span>Anxiety_P +<span class="st"> </span>Abuse_A +<span class="st"> </span>Abuse_P, 
                  <span class="dt">na.action=</span>na.omit, 
                  <span class="dt">correlation=</span><span class="kw">corCompSymm</span> (<span class="dt">form=</span>~<span class="dv">1</span>|Dyad),
                  <span class="dt">data=</span>riggsp)
-
-
-<span class="kw">summary</span>(step34i)</code></pre></div>
-<pre><code>## Generalized least squares fit by REML
-##   Model: Sat_A ~ Anxiety_A + Anxiety_P + Abuse_A + Abuse_P 
-##   Data: riggsp 
-##        AIC      BIC    logLik
-##   2000.676 2026.718 -993.3378
-## 
-## Correlation Structure: Compound symmetry
-##  Formula: ~1 | Dyad 
-##  Parameter estimate(s):
+<span class="kw">smallsummary</span>(step34i)</code></pre></div>
+<pre><code>## Correlation structure of class corCompSymm representing
 ##       Rho 
 ## 0.6143927 
-## 
-## Coefficients:
-##                Value Std.Error  t-value p-value
-## (Intercept) 54.73240 1.7264617 31.70206  0.0000
-## Anxiety_A   -1.60131 0.3089171 -5.18363  0.0000
-## Anxiety_P   -1.18204 0.3089171 -3.82640  0.0002
-## Abuse_A     -0.16882 0.0864775 -1.95214  0.0518
-## Abuse_P     -0.07640 0.0864775 -0.88343  0.3777
-## 
-##  Correlation: 
-##           (Intr) Anxt_A Anxt_P Abus_A
-## Anxiety_A -0.521                     
-## Anxiety_P -0.521  0.508              
-## Abuse_A   -0.453 -0.314 -0.200       
-## Abuse_P   -0.453 -0.200 -0.314  0.592
-## 
-## Standardized residuals:
-##         Min          Q1         Med          Q3         Max 
-## -3.22388069 -0.67522569  0.09050031  0.61514073  2.41321841 
-## 
-## Residual standard error: 6.682944 
-## Degrees of freedom: 310 total; 305 residual</code></pre>
-</div>
-<div id="interpretation-6" class="section level4">
-<h4>Interpretation:</h4>
+## NULL
+##                   Value  Std.Error    t-value      p-value
+## (Intercept) 54.73239514 1.72646171 31.7020614 1.539445e-98
+## Anxiety_A   -1.60131254 0.30891713 -5.1836315 3.968130e-07
+## Anxiety_P   -1.18203917 0.30891713 -3.8263957 1.577471e-04
+## Abuse_A     -0.16881650 0.08647747 -1.9521442 5.183586e-02
+## Abuse_P     -0.07639682 0.08647747 -0.8834302 3.776997e-01</code></pre>
+<pre><code>##                  2.5 %        97.5 %
+## (Intercept) 51.3485924 58.1161979163
+## Anxiety_A   -2.2067790 -0.9958460925
+## Anxiety_P   -1.7875056 -0.5765727279
+## Abuse_A     -0.3383092  0.0006762355
+## Abuse_P     -0.2458896  0.0930959205</code></pre>
 <p>Direct effects are not significant, but the “b” paths, both actor and partner, are significant.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a or X --&gt; M effects and standard errors</span>
 act_a &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(step2i))[<span class="dv">2</span>,<span class="dv">1</span>]
@@ -913,7 +778,7 @@ act_cp &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="k
 part_cp &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(step34i))[<span class="dv">5</span>,<span class="dv">1</span>]
 
 
-<span class="co">#The Eight Indirect Effects</span>
+##Indirect Effects
 
 <span class="co">#  Actor-Actor</span>
 AA_IE &lt;-<span class="st"> </span>act_a*act_b
@@ -927,10 +792,6 @@ PP_IE &lt;-<span class="st"> </span>part_a*part_b
 
 
 
-<span class="co">#Testing Indirect Effects Using Multilevel Modeling</span>
-
-##MCMAM [Selig &amp; Preacher, 2008] (http://www.quantpsy.org/medmc/medmc.htm)
-## a function with p values
 
 <span class="co"># The 95% confidence interval for AA indrect effect:</span>
 CI_AA =<span class="st"> </span><span class="kw">mmc</span>(act_a, act_b, act_a_se, act_b_se)
@@ -942,14 +803,14 @@ CI_PA =<span class="st"> </span><span class="kw">mmc</span>(part_a, act_b, part_
 CI_PP =<span class="st"> </span><span class="kw">mmc</span>(part_a, part_b, part_a_se, part_b_se)</code></pre></div>
 </div>
 </div>
-<div id="summary-of-indirect-effects-1" class="section level2">
-<h2>Summary of Indirect Effects</h2>
+<div id="indirect-effects-1" class="section level2">
+<h2>Indirect Effects</h2>
 <table>
 <thead>
 <tr class="header">
 <th align="center">Name</th>
 <th align="center">Indirect Effects</th>
-<th align="center">Esteem.</th>
+<th align="center">Estimate</th>
 <th align="center">p</th>
 <th align="center">95% CI Lower</th>
 <th align="center">Upper</th>
@@ -961,39 +822,39 @@ CI_PP =<span class="st"> </span><span class="kw">mmc</span>(part_a, part_b, part
 <td align="center">X1 -&gt; M1 -&gt; Y1</td>
 <td align="center">-0.129</td>
 <td align="center">0</td>
-<td align="center">-0.202</td>
-<td align="center">-0.068</td>
+<td align="center">-0.204</td>
+<td align="center">-0.067</td>
 </tr>
 <tr class="even">
 <td align="center">Partner-Partner</td>
 <td align="center">X1 -&gt; M2 -&gt; Y1</td>
 <td align="center">-0.018</td>
-<td align="center">0.302</td>
+<td align="center">0.309</td>
 <td align="center">-0.058</td>
-<td align="center">0.017</td>
+<td align="center">0.016</td>
 </tr>
 <tr class="odd">
 <td align="center">Actor-Partner</td>
 <td align="center">X2 -&gt; M2 -&gt; Y1</td>
 <td align="center">-0.095</td>
 <td align="center">0</td>
-<td align="center">-0.16</td>
+<td align="center">-0.161</td>
 <td align="center">-0.041</td>
 </tr>
 <tr class="even">
 <td align="center">Partner-Actor</td>
 <td align="center">X1 -&gt; M2 -&gt; Y1</td>
 <td align="center">-0.024</td>
-<td align="center">0.313</td>
-<td align="center">-0.076</td>
+<td align="center">0.309</td>
+<td align="center">-0.075</td>
 <td align="center">0.023</td>
 </tr>
 </tbody>
 </table>
 <p>Note that p value and lower and upper limits of the confidence interval will differ slightly because they are based on Monte Carlo estimates.</p>
 </div>
-<div id="summary-direct-and-total-effects-1" class="section level2">
-<h2>Summary Direct and Total Effects</h2>
+<div id="direct-and-total-effects-1" class="section level2">
+<h2>Direct and Total Effects</h2>
 <table>
 <thead>
 <tr class="header">
@@ -1021,13 +882,15 @@ CI_PP =<span class="st"> </span><span class="kw">mmc</span>(part_a, part_b, part
 </tr>
 </tbody>
 </table>
-<p>Note that <code>% Mediated</code> equals <code>ab/c</code> or equivalently <code>1 - c'/c</code>. This value can be larger than one or negative. Make sure that <code>c</code> is substantial before computing these values.</p>
-<div id="interpretation-7" class="section level4">
-<h4>Interpretation:</h4>
-<p><strong>Actor-Actor</strong> —People who report more abuse are more anxiously attached and are then less satisfied.<br />
-<strong>Partner-Partner</strong> —People who report more abuse have partners who are more anxiously attached and they in turn are less satisfied. <strong>Actor-Partner</strong> —People who report more abuse are more anxiously attached and their partners in turn are less satisfied. <strong>Partner-Actor</strong> —People who report more abuse have partners who are more anxiously attached and those partners are less satisfied.<br />
-***</p>
+<p>Note that <code>% Mediated</code> equals <code>ab/c</code> or equivalently <code>1 - c'/c</code>. This value can be larger than one or negative. Make sure that the total effect is non-trivial before interpreting these values.</p>
 </div>
+<div id="interpretation-3" class="section level2">
+<h2>Interpretation</h2>
+<p><strong>Actor-Actor</strong> —People who report more abuse are more anxiously attached and are then less satisfied.<br />
+<strong>Partner-Partner</strong> —People who report more abuse have partners who are more anxiously attached and they in turn are less satisfied.<br />
+<strong>Actor-Partner</strong> —People who report more abuse are more anxiously attached and their partners in turn are less satisfied.<br />
+<strong>Partner-Actor</strong> —People who report more abuse have partners who are more anxiously attached and those partners are less satisfied.</p>
+<hr />
 </div>
 </div>
 

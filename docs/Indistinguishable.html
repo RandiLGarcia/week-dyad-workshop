@@ -246,14 +246,15 @@ div.tocify {
 </div>
 
 
-<div id="get-data" class="section level3">
-<h3>Get Data</h3>
+<hr />
+<div id="get-data" class="section level1">
+<h1>Get Data</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nlme)
 <span class="kw">library</span>(dyadr)
  riggsp &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">file.choose</span>(), <span class="dt">header=</span><span class="ot">TRUE</span>) </code></pre></div>
 </div>
-<div id="apim-run" class="section level3">
-<h3>APIM Run</h3>
+<div id="apim-run" class="section level1">
+<h1>APIM Run</h1>
 <p>A run examining the effect of own Attachment Anxiety (Anxiety_A) or actor and the effect of partner’s Attachment Anxiety (Anxiety_P) on satisfaction (Sat_A), allowing for nonindependence by correlating the errors of the two members and treating dyad members as indistinguishable:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">apim =<span class="st"> </span><span class="kw">gls</span>(Sat_A ~<span class="st"> </span>Anxiety_A +<span class="st"> </span>Anxiety_P , 
                  <span class="dt">na.action=</span>na.omit, 
@@ -264,11 +265,8 @@ div.tocify {
 ## (Intercept) 50.409669 56.2679703
 ## Anxiety_A   -2.366082 -1.2120350
 ## Anxiety_P   -1.854036 -0.6999898</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">apimi =<span class="st"> </span><span class="kw">summary</span>(apim)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">apimi=<span class="st"> </span><span class="kw">summary</span>(apim)</code></pre></div>
 <p>This is the same code as yesterday, but the key is that the same variable in included “twice,” once for the respondent and once for the partner.</p>
-</div>
-<div id="output" class="section level2">
-<h2>Output</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">apimi</code></pre></div>
 <pre><code>## Generalized least squares fit by REML
 ##   Model: Sat_A ~ Anxiety_A + Anxiety_P 
@@ -300,21 +298,21 @@ div.tocify {
 ## Residual standard error: 6.71144 
 ## Degrees of freedom: 310 total; 307 residual</code></pre>
 </div>
-<div id="interpretation" class="section level1">
-<h1>Interpretation</h1>
+<div id="interpretation-of-the-run" class="section level1">
+<h1>Interpretation of the Run</h1>
 <p>First look at the coefficients that can be seen by themselves:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(apimi)</code></pre></div>
 <pre><code>##                 Value Std.Error   t-value       p-value
 ## (Intercept) 53.338820 1.4944920 35.690267 2.837283e-111
 ## Anxiety_A   -1.789058 0.2944051 -6.076860  3.626699e-09
 ## Anxiety_P   -1.277013 0.2944051 -4.337606  1.956439e-05</code></pre>
-</div>
-<div id="interpreted-as-regression-coefficients-adjusted-for-nonindependence" class="section level1">
-<h1>Interpreted as regression coefficients, adjusted for nonindependence:</h1>
+<div id="interpreted-as-regression-coefficients-adjusted-for-nonindependence" class="section level2">
+<h2>Interpreted as regression coefficients, adjusted for nonindependence:</h2>
 <p><code>Intercept = 53.33880:</code> The predicted level of Satisfaction for those who score zero on all the predictors. Because Anxiety is not centered this value is not meaningful.</p>
 <p><code>The Actor Effect of Anxiety = -1.789:</code> The effect of a one unit change of Anxiety_A on Sat_A holding Anxiety_P constant. This result is statistically signficant.</p>
 <p><code>The Partner Effect of Anxiety  = -1.277:</code> The effect of a one unit change of Anxiety_P on Sat_A holding Anxiety_A constant. This result is statistically signficant.</p>
 <p>Note that actor and partner effects are nearly equal with the partner effect a bit smaller than the actor effect. More on that when patterns are discussed.</p>
+</div>
 <div id="confidence-intervals" class="section level2">
 <h2>Confidence Intervals</h2>
 <p>For the 95% confidence intervals:</p>
@@ -333,16 +331,16 @@ div.tocify {
 <pre><code>## [1] -0.3112176</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">         <span class="kw">as.numeric</span>(<span class="kw">pcor.test</span>(riggsp$Anxiety_P,riggsp$Sat_A,riggsp$Anxiety_A)[<span class="dv">1</span>])</code></pre></div>
 <pre><code>## [1] -0.2276168</code></pre>
-</div>
-</div>
-<div id="interpretation-1" class="section level1">
-<h1>Interpretation</h1>
 <p>The effect size for actor is -.311, a moderate effect, and for partner -.228, a small effect.</p>
+</div>
 <div id="multiple-correlation" class="section level2">
 <h2>Multiple Correlation</h2>
 <p>The multiple correlation squared can be computed by comparing the error variance for the model to a model with no predictors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Empty Model</span>
-        apimie =<span class="st"> </span><span class="kw">summary</span>(<span class="kw">gls</span>(Sat_A ~<span class="st"> </span><span class="dv">1</span> , <span class="dt">na.action=</span>na.omit, <span class="dt">correlation=</span><span class="kw">corCompSymm</span> (<span class="dt">form=</span>~<span class="dv">1</span>|Dyad),<span class="dt">data=</span>riggsp))
+        apimie =<span class="st"> </span><span class="kw">summary</span>(<span class="kw">gls</span>(Sat_A ~<span class="st"> </span><span class="dv">1</span> , 
+                     <span class="dt">na.action=</span>na.omit, 
+                     <span class="dt">correlation=</span><span class="kw">corCompSymm</span> (<span class="dt">form=</span>~<span class="dv">1</span>|Dyad),
+                     <span class="dt">data=</span>riggsp))
 <span class="co"># sd of errors for the model</span>
         esd =<span class="st"> </span><span class="kw">as.numeric</span>(apimi[<span class="dv">6</span>])
 <span class="co"># sd of errors for the empty model</span>
@@ -352,14 +350,14 @@ div.tocify {
 <pre><code>## [1] 0.1582226</code></pre>
 <p>The multiple correlation squared is .1582226.</p>
 </div>
-</div>
-<div id="partial-icc" class="section level1">
-<h1>Partial ICC</h1>
+<div id="partial-icc" class="section level2">
+<h2>Partial ICC</h2>
 <p>To look at the measure of nonindependence, which can be accessed by:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(apimi$model$corStruct, <span class="dt">unconstrained =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <pre><code>##       Rho 
 ## 0.6166651</code></pre>
 <p>This is partial intraclass correlation of .6166651. That is, it the correlations between the two members’ Satisfaction, controlling for their Attachment Anxiety.</p>
+</div>
 <div id="standard-deviation-of-errors" class="section level2">
 <h2>Standard Deviation of Errors</h2>
 <p>Also the standard deviation of the errors can be directly accessed by:</p>
@@ -367,11 +365,13 @@ div.tocify {
 <pre><code>## [1] 6.71144</code></pre>
 <p>The standard deviation of the errors is 6.71144.</p>
 </div>
-<div id="standardized-estimates-beta-weight" class="section level2">
-<h2>Standardized Estimates (Beta Weight)</h2>
+</div>
+<div id="standardized-estimates-beta-weight" class="section level1">
+<h1>Standardized Estimates (Beta Weight)</h1>
 <p>Need to first compute mean and standard deviation for all variables for the dataset analyzed. Then compute the standardized variables and then rerun the APIM analysis.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">        tempd=<span class="kw">na.omit</span>(riggsp[,<span class="kw">c</span>(<span class="st">&quot;Dyad&quot;</span>,<span class="st">&quot;Anxiety_A&quot;</span>,<span class="st">&quot;Anxiety_P&quot;</span>,<span class="st">&quot;Sat_A&quot;</span>)])
-<span class="co">#  (tempd is the dataset of cases used for the APIM run, all missing cases are excluded)</span>
+<span class="co">#  (tempd is the dataset of cases used for the APIM run, </span>
+<span class="co">#     all missing cases are excluded)</span>
         meanAnx =<span class="st"> </span><span class="kw">mean</span>(tempd$Anxiety_A, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
         sdAnx =<span class="st"> </span><span class="kw">sd</span>(tempd$Anxiety_A, <span class="dt">na.rm=</span><span class="ot">TRUE</span> )
         meanSat =<span class="st"> </span><span class="kw">mean</span>(tempd$Sat_A,  <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
@@ -415,18 +415,16 @@ apimis</code></pre></div>
 ## 
 ## Residual standard error: 0.9184858 
 ## Degrees of freedom: 310 total; 307 residual</code></pre>
-</div>
-</div>
-<div id="interpretation-2" class="section level1">
-<h1>Interpretation</h1>
 <p><code>Intercept = 0.00000:</code> Is zero and should be zero because all variables are standardized..</p>
 <p><code>The Actor Effect of Anxiety = -0.304:</code> The actor beta coefficient.</p>
 <p><code>The Partner Effect of Anxiety  = -0.217:</code> The partner beta coefficient.</p>
 <p>Note that one minus the error variance (0.1563838) closely approximates the multiple correlation squared (0.1582226)</p>
-<div id="descriptives" class="section level2">
-<h2>Descriptives</h2>
+</div>
+<div id="descriptives" class="section level1">
+<h1>Descriptives</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">        tempd=<span class="kw">na.omit</span>(riggsp[,<span class="kw">c</span>(<span class="st">&quot;Dyad&quot;</span>,<span class="st">&quot;Anxiety_A&quot;</span>,<span class="st">&quot;Anxiety_P&quot;</span>,<span class="st">&quot;Sat_A&quot;</span>)])
-<span class="co">#  (tempd is the dataset of cases used for the APIM run, all missing cases are excluded)</span>
+<span class="co">#  (tempd is the dataset of cases used for the APIM run, </span>
+<span class="co">#      all missing cases are excluded)</span>
         meanAnx =<span class="st"> </span><span class="kw">mean</span>(tempd$Anxiety_A, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
         sdAnx =<span class="st"> </span><span class="kw">sd</span>(tempd$Anxiety_A, <span class="dt">na.rm=</span><span class="ot">TRUE</span> )
         meanSat =<span class="st"> </span><span class="kw">mean</span>(tempd$Sat_A,  <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
@@ -444,7 +442,6 @@ The total number of observations: 310<br />
 The total number of missing observations: 0<br />
 The total number of dyads: 155<br />
 The total number of singles: 0</p>
-</div>
 </div>
 
 
