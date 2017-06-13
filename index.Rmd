@@ -67,7 +67,8 @@ fontsize: 12 pt
   + Lunch 12:00 PM to 1:15 PM  
   + Lecture and Lab 1:15-3:30
     - [Mediation Introduction](Mediation of the APIM.pdf)
-    - [Mediation in the APIM](Mediation_in_the_APIM.html): Attachment Anxiety Mediating the Effect of Childhood Abuse on Satisfaction
+    - [Mediation in the APIM](Mediation_in_the_APIM.html): Attachment Anxiety Mediating the Effect of Childhood Abuse on Satisfaction  
+      -[Figures](Mediation_BONUS_figures.html)
     - [APIMoM and APIMeM Apps](APIMeMoM.pdf)	
   + Late Afternoon Session 3:30-5:00
     - [Homework (optional)](Day 3_QUESTIONS.pdf)
