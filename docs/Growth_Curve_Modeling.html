@@ -334,9 +334,9 @@ kashy_ppp &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span c
 ## (Intercept) 6.25943802 0.069643407 1327 89.878400 0.000000000
 ## TIME        0.01928692 0.006211763 1327  3.104902 0.001943707</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">confintLME</span>(GC_men)</code></pre></div>
-<pre><code>##                     2.5%      97.5%
-## (Intercept) 6.7946074871 6.89591087
-## TIME        0.0001919088 0.06847118</code></pre>
+<pre><code>##                    2.5%      97.5%
+## (Intercept) 6.122814832 6.39606120
+## TIME        0.007100969 0.03147286</code></pre>
 <p>The final fixed equation is:</p>
 <p><span class="math display">\[\widehat{Satisfaction} = 6.26 + .019(TIME)\]</span></p>
 <p>The Intercept = 6.26, which is interpreted as the average level of satisfaction at TIME = 0 (the study midpoint). The coefficient for TIME = .019. That is, over time, satisfaction increases .019 units a day. The slope is small, although it is statistically significant—thus, there is some evidence of an average increase in satisfaction over time for men.</p>
@@ -372,10 +372,10 @@ kashy_ppp &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span c
 ## CAAvoid      -0.139771381 0.068781829  100 -2.0320975 0.044795466
 ## TIME:CAAvoid  0.004502673 0.006260006 1313  0.7192761 0.472098811</code></pre>
 <pre><code>##                      2.5%        97.5%
-## (Intercept)   6.676428699  6.859451880
-## TIME          0.003052038  0.069803573
-## CAAvoid      -0.274581288 -0.004961473
-## TIME:CAAvoid -0.007766714  0.016772060</code></pre>
+## (Intercept)   6.125532017  6.396417865
+## TIME          0.006920977  0.031610412
+## CAAvoid      -0.276232570 -0.003310191
+## TIME:CAAvoid -0.007778035  0.016783381</code></pre>
 <p>The final fixed effects growth equation with attachment avoidance as a moderator is:</p>
 <p><span class="math display">\[\widehat{Satisfaction} = 6.26 + .019(TIME) -.140(Avoid) + .0045(TIME*Avoid)\]</span></p>
 <p>The <span class="math inline">\(intercept = 6.26\)</span>, the predicted satisfaction for men at the study midpoint who are at the mean on avoidance. There is a significant main effect of time, <span class="math inline">\(b = 0.019\)</span>, that is, satisfaction increases by .019 each day for men who are at the mean on avoidance. There is a significant main effect of avoidance, <span class="math inline">\(b = -.140\)</span>, such that men who are higher in avoidance are less satisfied at the study midpoint than men who are lower in avoidance. There is no significant Time X Avoidance interaction, <span class="math inline">\(b = .0045\)</span>, but to interpret the direction of this interaction we could calculate the slope for men who are high and low in avoidance:</p>
@@ -456,10 +456,10 @@ High_Avoid_Slope</code></pre></div>
 ## GenderSMan:TIME   0.019184716 0.006213542 2760   3.087565 0.002038093
 ## GenderSWoman:TIME 0.009855233 0.006301605 2760   1.563924 0.117950005</code></pre>
 <pre><code>##                           2.5%      97.5%
-## GenderSMan        6.7972876641 6.90396126
-## GenderSWoman      6.7862923937 7.05383757
-## GenderSMan:TIME   0.0007083852 0.07103065
-## GenderSWoman:TIME 0.0006248906 0.02225048</code></pre>
+## GenderSMan         6.122649854 6.39564404
+## GenderSWoman       6.276168216 6.50064773
+## GenderSMan:TIME    0.007001054 0.03136838
+## GenderSWoman:TIME -0.002501105 0.02221157</code></pre>
 <p>We can also use the <code>lincomb()</code> function to test for differences between our estimates for men and women.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lincomb</span>(<span class="kw">summary</span>(dyadGC_di_two), <span class="dv">1</span>, <span class="dv">2</span>) </code></pre></div>
 <pre><code>## [1] -0.129261027  0.043308553  0.002838996</code></pre>
@@ -548,10 +548,10 @@ High_Avoid_Slope</code></pre></div>
 ## TIME         0.014519974 0.005323866 2760   2.727337 0.006425188
 ## GENDER:TIME  0.004664742 0.003288705 2760   1.418413 0.156183124</code></pre>
 <pre><code>##                     2.5%       97.5%
-## (Intercept)  6.206305633  6.44124929
-## GENDER      -0.107072059 -0.02218897
-## TIME         0.004085389  0.02495456
-## GENDER:TIME -0.001781001  0.01111048</code></pre>
+## (Intercept)  6.206254095  6.44130083
+## GENDER      -0.107090679 -0.02217035
+## TIME         0.004080811  0.02495914
+## GENDER:TIME -0.001783829  0.01111331</code></pre>
 </div>
 <div id="adding-a-moderator-1" class="section level3">
 <h3>Adding a Moderator</h3>
@@ -593,18 +593,18 @@ High_Avoid_Slope</code></pre></div>
 ## GENDER:TIME:CAAvoid  0.0037821733 0.004693833 2725   0.8057750 0.420442924
 ## GENDER:TIME:CPAvoid -0.0023174065 0.004696434 2725  -0.4934396 0.621741741</code></pre>
 <pre><code>##                              2.5%        97.5%
-## (Intercept)          6.2056039760  6.441658887
-## GENDER              -0.1070584155 -0.021621863
-## TIME                 0.0038736852  0.024967050
-## CAAvoid             -0.1805674327  0.007436813
-## CPAvoid             -0.1415368975  0.050379625
-## GENDER:TIME         -0.0012855242  0.011699305
-## GENDER:CAAvoid      -0.1455988756  0.038144459
-## TIME:CAAvoid        -0.0084807312  0.010160601
-## GENDER:CPAvoid      -0.0670407044  0.120703635
-## TIME:CPAvoid         0.0003958586  0.019047287
-## GENDER:TIME:CAAvoid -0.0054175708  0.012981917
-## GENDER:TIME:CPAvoid -0.0115222473  0.006887434</code></pre>
+## (Intercept)          6.2055515288  6.441711334
+## GENDER              -0.1070773980 -0.021602881
+## TIME                 0.0038689986  0.024971737
+## CAAvoid             -0.1806092040  0.007478584
+## CPAvoid             -0.1415795379  0.050422266
+## GENDER:TIME         -0.0012884092  0.011702190
+## GENDER:CAAvoid      -0.1456397001  0.038185284
+## TIME:CAAvoid        -0.0084848729  0.010164743
+## GENDER:CPAvoid      -0.0670824178  0.120745349
+## TIME:CPAvoid         0.0003917146  0.019051431
+## GENDER:TIME:CAAvoid -0.0054216588  0.012986005
+## GENDER:TIME:CPAvoid -0.0115263376  0.006891525</code></pre>
 <p>We see that there is no statistically significant difference in the <code>TIME:AVOID</code> effects by gender, no three-way interactions. Further, gender does not moderate the actor and partner effects.</p>
 <p>So we can run a model where gender is only included as a main effect—i.e., gender affects the intercept only.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dyadGC_di_mod2  &lt;-<span class="st"> </span><span class="kw">lme</span>(ASATISF ~<span class="st"> </span>GENDER +<span class="st"> </span>TIME*CAAvoid +<span class="st"> </span>TIME*CPAvoid,
