@@ -1,11 +1,11 @@
 ---
-title: "DATIC: Dyadic Data Analysis 2017 Workshop"
+title: "DATIC: Dyadic Data Analysis 2018 Workshop"
 author: "Randi L. Garcia and David A. Kenny"
-date: "June 19-23, 2017"
+date: "June 25-29, 2018"
 output:
   html_document:
-    highlight: pygments
-    theme: cerulean
+    highlight: zenburn
+    theme: flatly
     toc: yes
     toc_float: yes
     toc_depth: 3
@@ -15,7 +15,7 @@ fontsize: 12 pt
 ***
 #Meeting Sign-up Sheet
 
-  > Sign-up on [this Googlesheet](https://docs.google.com/spreadsheets/d/1enfIHEKDqw5wALxG3Qb140dnBXc74VRTc2Pr-oefLQo/edit?usp=sharing)  
+  > Sign-up on [this Googlesheet](https://docs.google.com/spreadsheets/d/1uVj9usSealO8WTBTkXm99x7fCNPym5o5iWvIHf6J7Y8/edit?usp=sharing)  
 
 ***
 
@@ -26,6 +26,7 @@ fontsize: 12 pt
   + Lecture and Lab 9-12
     - [Definitions](Definitions.pdf)
     - [Introduction to R](Intro_to_R_and_the_Data.html) and [Riggs Dataset](Riggs Codebook.pdf)
+        -   [Script to install packages](install-packages.pdf)
     - [Nonindependence](Nonindependence.pdf)
     - [Data Structures and Restructuring](Data_Structures.pdf)
   + Lunch 12:00 PM to 1:15 PM  
@@ -36,7 +37,7 @@ fontsize: 12 pt
   + Late Afternoon Session 3:30-5:00
     - [Homework (optional)](Day 1_QUESTIONS.pdf)
     - Restructure and Do Runs on One's Own Data
-    - [Individual Meetings](https://docs.google.com/spreadsheets/d/1enfIHEKDqw5wALxG3Qb140dnBXc74VRTc2Pr-oefLQo/edit?usp=sharing)
+    - [Individual Meetings](https://docs.google.com/spreadsheets/d/1uVj9usSealO8WTBTkXm99x7fCNPym5o5iWvIHf6J7Y8/edit?usp=sharing)
 
 ***
 
@@ -55,7 +56,7 @@ fontsize: 12 pt
   + Late Afternoon Session 3:30-5:00
     - [Homework (optional)](Day 2_QUESTIONS.pdf)
     - Do Runs on One's Own Data
-    - [Individual Meetings](https://docs.google.com/spreadsheets/d/1enfIHEKDqw5wALxG3Qb140dnBXc74VRTc2Pr-oefLQo/edit?usp=sharing)
+    - [Individual Meetings](https://docs.google.com/spreadsheets/d/1uVj9usSealO8WTBTkXm99x7fCNPym5o5iWvIHf6J7Y8/edit?usp=sharing)
 
 ***
 
@@ -67,25 +68,27 @@ fontsize: 12 pt
   + Lunch 12:00 PM to 1:15 PM  
   + Lecture and Lab 1:15-3:30
     - [Mediation Introduction (slides)](Mediation of the APIM.pdf)  
-      -[Figures only](Mediation_BONUS_figures.html)  
-      -[Full Handout](Mediation_handout.pdf)
+        -  [Figures only](Mediation_BONUS_figures.html)  
+        -  [Full Handout](Mediation_handout.pdf)
     - [Mediation in the APIM](Mediation_in_the_APIM.html): Attachment Anxiety Mediating the Effect of Childhood Abuse on Satisfaction  
     - [APIMoM and APIMeM Apps](APIMeMoM.pdf)	
   + Late Afternoon Session 3:30-5:00
     - [Homework (optional)](Day 3_QUESTIONS.pdf)
     - Do Runs on One's Own Data
-    - [Individual Meetings](https://docs.google.com/spreadsheets/d/1enfIHEKDqw5wALxG3Qb140dnBXc74VRTc2Pr-oefLQo/edit?usp=sharing)
+    - [Individual Meetings](https://docs.google.com/spreadsheets/d/1uVj9usSealO8WTBTkXm99x7fCNPym5o5iWvIHf6J7Y8/edit?usp=sharing)
 
 ***
 
-##Day 4: Over-Time Models of Dyadic Data
+##Day 4: Break-out Sessions
+
+###Over-Time Models of Dyadic Data
 
   + Lecture and Computer Workshop 9-12 and 1:15-3:30
     - [Introduction](Over Time_Intro.pdf)
     - [Kashy Dataset](Kashy Codebook.pdf)
     - Growth Curve Models: [Slides](Growth Curve.pdf) and [Examples](Growth_Curve_Modeling.html)  
-      -Individual Growth Curve  
-      -Dyadic Growth Curves  
+        -   Individual Growth Curve  
+        -   Dyadic Growth Curves  
   + Lunch 12:00 PM to 1:15 PM  
   + Lecture and Lab 1:15-3:30
     - [Repeated Measures Analysis](Repeated_Measures.html): Effect of Day and Gender on Satisfaction	
@@ -94,8 +97,25 @@ fontsize: 12 pt
   + Late Afternoon Session 3:30-5:00
     - [Homework (optional)](Day 4_QUESTIONS.pdf)
     - Do Runs on One's Own Data
-    - [Individual Meetings](https://docs.google.com/spreadsheets/d/1enfIHEKDqw5wALxG3Qb140dnBXc74VRTc2Pr-oefLQo/edit?usp=sharing) 
+    - [Individual Meetings](https://docs.google.com/spreadsheets/d/1uVj9usSealO8WTBTkXm99x7fCNPym5o5iWvIHf6J7Y8/edit?usp=sharing) 
 
+###Structural Equation Modeling for Dyadic Data
+
+  + Lecture and Computer Workshop 9-12 and 1:15-3:30
+    - Acitelli Dataset
+    - Introduction to Structural Equation Modeling
+    - APIM with SEM 
+    - Model Fit
+  + Lunch 12:00 PM to 1:15 PM  
+  + Lecture and Lab 1:15-3:30
+    - Mediation with SEM
+    - Confirmatory Factor Analysis with Dyads
+    - The Common Fate Model
+  + Late Afternoon Session 3:30-5:00
+    - [Homework (optional)](Day 4_QUESTIONS.pdf)
+    - Do Runs on One's Own Data
+    - [Individual Meetings](https://docs.google.com/spreadsheets/d/1uVj9usSealO8WTBTkXm99x7fCNPym5o5iWvIHf6J7Y8/edit?usp=sharing) 
+    
 ***
 
 ##Day 5: Additional Topics
@@ -105,13 +125,13 @@ fontsize: 12 pt
     - [DyadR](https://github.com/RandiLGarcia/dyadr)
     - [R: Advantages and Disadvantages](Advantages and Disadvantages of R.pdf)
     - Alternative Dyadic Models and Estimation Methods  
-      -[Structural Equation Modeling (SEM)](CommonFateModel.html)  
-      -[Generalized Linear Mixed Models](Generalized_Linear_Mixed_Models___GEE.html)  
-      -[Generalized Estimating Equations (GEE)](Generalized_Linear_Mixed_Models___GEE.html)  
+        - [Structural Equation Modeling (SEM)](CommonFateModel.html)  
+        - [Generalized Linear Mixed Models](Generalized_Linear_Mixed_Models___GEE.html)  
+        - [Generalized Estimating Equations (GEE)](Generalized_Linear_Mixed_Models___GEE.html)  
     - [Alternative Dyadic Designs](designs.pdf)  
-      -One-with-Many  
-      -Social Relations Model  
-      -GAPIM  
+        - One-with-Many  
+        - Social Relations Model  
+        - GAPIM  
   + Group Lunch 12-1:15
 
 ***
@@ -140,6 +160,4 @@ fontsize: 12 pt
   + [UConn Map](http://maps.uconn.edu/index.php)
   + [Dave's Website](http://davidakenny.net/index.htm)
   + [DyadR page Webpage](http://davidakenny.net/DyadR/DyadRweb.htm)
-  + [Script to install packages](install-packages.pdf)
-  + [ggplot2 book by Hadley Wickham](http://ms.mcmaster.ca/~bolker/misc/ggplot2-book.pdf)
-  + [R for Data Science by Garrett Grolemund](http://r4ds.had.co.nz/index.html)
+  + [R for Data Science by Hadley Wickham and Garrett Grolemund](http://r4ds.had.co.nz/index.html)
