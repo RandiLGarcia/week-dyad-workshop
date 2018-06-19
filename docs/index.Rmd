@@ -1,6 +1,5 @@
 ---
 title: "DATIC: Dyadic Data Analysis 2018 Workshop"
-author: "Randi L. Garcia and David A. Kenny"
 date: "June 25-29, 2018"
 output:
   html_document:
@@ -11,6 +10,9 @@ output:
     toc_depth: 3
 fontsize: 12 pt
 ---
+
+ > **Instructors**: Randi Garcia and Dave Kenny  
+ > **Teaching Assistants**: Julianna Alvord and Emma Ning  
     
 ***
 #Meeting Sign-up Sheet
@@ -150,6 +152,7 @@ fontsize: 12 pt
 
 #Cheatsheets and R Tutorials
 
+  + [All cheatsheets](https://www.rstudio.com/resources/cheatsheets/)
   + [dplyr cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
   + [ggplot2 cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)
   + [RMarkdown cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)  
