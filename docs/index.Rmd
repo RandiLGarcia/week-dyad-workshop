@@ -102,17 +102,17 @@ fontsize: 12 pt
 ###Structural Equation Modeling for Dyadic Data
 
   + Lecture and Computer Workshop 9-12 and 1:15-3:30
-    - Acitelli Dataset
+    - [Acitelli Dataset](Acitelli Codebook.pdf)
     - Introduction to Structural Equation Modeling
-    - APIM with SEM 
+    - [APIM with SEM](APIM_SEM.html)
     - Model Fit
   + Lunch 12:00 PM to 1:15 PM  
   + Lecture and Lab 1:15-3:30
-    - Mediation with SEM
-    - Confirmatory Factor Analysis with Dyads
-    - The Common Fate Model
+    - [Mediation with SEM](Mediation_SEM.html)
+    - [Confirmatory Factor Analysis with Dyads](ConfirmatoryFactorAnalysis.html)
+    - [The Common Fate Model](CommonFateModel.html)
   + Late Afternoon Session 3:30-5:00
-    - [Homework (optional)](Day 4_QUESTIONS.pdf)
+    - [Homework (optional)](home4_sem.pdf)
     - Do Runs on One's Own Data
     - [Individual Meetings](https://docs.google.com/spreadsheets/d/1uVj9usSealO8WTBTkXm99x7fCNPym5o5iWvIHf6J7Y8/edit?usp=sharing) 
     
