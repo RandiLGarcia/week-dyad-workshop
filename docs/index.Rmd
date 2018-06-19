@@ -26,7 +26,7 @@ fontsize: 12 pt
   + Lecture and Lab 9-12
     - [Definitions](Definitions.pdf)
     - [Introduction to R](Intro_to_R_and_the_Data.html) and [Riggs Dataset](Riggs Codebook.pdf)
-        -   [Script to install packages](install-packages.pdf)
+        -   [Script to install packages](install-packages.html)
     - [Nonindependence](Nonindependence.pdf)
     - [Data Structures and Restructuring](Data_Structures.pdf)
   + Lunch 12:00 PM to 1:15 PM  
@@ -35,7 +35,7 @@ fontsize: 12 pt
     - [Multilevel Modeling of Dyadic Data](MLM.html): Effects of Gender and Length of Marriage on Satisfaction
     - [Introduction to the APIM](APIM.pdf)
   + Late Afternoon Session 3:30-5:00
-    - [Homework (optional)](Day 1_QUESTIONS.pdf)
+    - Homework (optional)
     - Restructure and Do Runs on One's Own Data
     - [Individual Meetings](https://docs.google.com/spreadsheets/d/1uVj9usSealO8WTBTkXm99x7fCNPym5o5iWvIHf6J7Y8/edit?usp=sharing)
 
@@ -54,7 +54,7 @@ fontsize: 12 pt
     - [Actor-Partner Interactions](Actor-Partner_Interactions.html)
 	  - [APIM_MM Dingy App](Dingy_Output.pdf)
   + Late Afternoon Session 3:30-5:00
-    - [Homework (optional)](Day 2_QUESTIONS.pdf)
+    - Homework (optional)
     - Do Runs on One's Own Data
     - [Individual Meetings](https://docs.google.com/spreadsheets/d/1uVj9usSealO8WTBTkXm99x7fCNPym5o5iWvIHf6J7Y8/edit?usp=sharing)
 
@@ -73,7 +73,7 @@ fontsize: 12 pt
     - [Mediation in the APIM](Mediation_in_the_APIM.html): Attachment Anxiety Mediating the Effect of Childhood Abuse on Satisfaction  
     - [APIMoM and APIMeM Apps](APIMeMoM.pdf)	
   + Late Afternoon Session 3:30-5:00
-    - [Homework (optional)](Day 3_QUESTIONS.pdf)
+    - Homework (optional)
     - Do Runs on One's Own Data
     - [Individual Meetings](https://docs.google.com/spreadsheets/d/1uVj9usSealO8WTBTkXm99x7fCNPym5o5iWvIHf6J7Y8/edit?usp=sharing)
 
@@ -95,7 +95,7 @@ fontsize: 12 pt
     - [Stability-Influence Model](Stability-Influence_Model.html): Effect of Partner's Satisfaction on Respondent's Satisfaction 
     - [APIM Person-Centered](APIM_OverTime.html)
   + Late Afternoon Session 3:30-5:00
-    - [Homework (optional)](Day 4_QUESTIONS.pdf)
+    - Homework (optional)
     - Do Runs on One's Own Data
     - [Individual Meetings](https://docs.google.com/spreadsheets/d/1uVj9usSealO8WTBTkXm99x7fCNPym5o5iWvIHf6J7Y8/edit?usp=sharing) 
 
@@ -112,7 +112,7 @@ fontsize: 12 pt
     - [Confirmatory Factor Analysis with Dyads](ConfirmatoryFactorAnalysis.html)
     - [The Common Fate Model](CommonFateModel.html)
   + Late Afternoon Session 3:30-5:00
-    - [Homework (optional)](home4_sem.pdf)
+    - Homework (optional)
     - Do Runs on One's Own Data
     - [Individual Meetings](https://docs.google.com/spreadsheets/d/1uVj9usSealO8WTBTkXm99x7fCNPym5o5iWvIHf6J7Y8/edit?usp=sharing) 
     
@@ -124,8 +124,8 @@ fontsize: 12 pt
     - [Presentation and Doing Dyadic Data Analysis Right](Presentation.pdf)
     - [DyadR](https://github.com/RandiLGarcia/dyadr)
     - [R: Advantages and Disadvantages](Advantages and Disadvantages of R.pdf)
+    - MLM versus SEM
     - Alternative Dyadic Models and Estimation Methods  
-        - [Structural Equation Modeling (SEM)](CommonFateModel.html)  
         - [Generalized Linear Mixed Models](Generalized_Linear_Mixed_Models___GEE.html)  
         - [Generalized Estimating Equations (GEE)](Generalized_Linear_Mixed_Models___GEE.html)  
     - [Alternative Dyadic Designs](designs.pdf)  
