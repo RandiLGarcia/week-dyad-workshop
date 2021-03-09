@@ -20,9 +20,9 @@ This website contains content from the 2018 DATIC workshop on Dyadic Data Analys
 
 ***
 
-#Schedule
+# Schedule
 
-##Day 1:  Definitions, Nonindependence, and Data  
+## Day 1:  Definitions, Nonindependence, and Data  
 
   + Lecture and Lab 9-12
     - [Definitions](Definitions.pdf)
@@ -42,7 +42,7 @@ This website contains content from the 2018 DATIC workshop on Dyadic Data Analys
 
 ***
 
-##Day 2: The Actor-Partner Interdependence Model
+## Day 2: The Actor-Partner Interdependence Model
 
   + Lecture and Lab 9-12
     - [Indistinguishable Dyads](Indistinguishable.html): Effects of Attachment Anxiety on Satisfaction
@@ -61,7 +61,7 @@ This website contains content from the 2018 DATIC workshop on Dyadic Data Analys
 
 ***
 
-##Day 3: Moderation and Mediation
+## Day 3: Moderation and Mediation
 
   + Lecture and Lab 9-12
     - [Moderation Introduction](Moderation of the APIM.pdf)
@@ -80,9 +80,9 @@ This website contains content from the 2018 DATIC workshop on Dyadic Data Analys
 
 ***
 
-##Day 4: Break-out Sessions
+## Day 4: Break-out Sessions
 
-###Over-Time Models of Dyadic Data
+### Over-Time Models of Dyadic Data
 
   + Lecture and Computer Workshop 9-12 and 1:15-3:30
     - [Introduction](Over Time_Intro.pdf)
@@ -100,7 +100,7 @@ This website contains content from the 2018 DATIC workshop on Dyadic Data Analys
     - Do Runs on One's Own Data
     - [Individual Meetings](https://docs.google.com/spreadsheets/d/1uVj9usSealO8WTBTkXm99x7fCNPym5o5iWvIHf6J7Y8/edit?usp=sharing) 
 
-###Structural Equation Modeling for Dyadic Data
+### Structural Equation Modeling for Dyadic Data
 
   + Lecture and Computer Workshop 9-12 and 1:15-3:30
     - [Acitelli Dataset](Acitelli Codebook.pdf)
@@ -119,7 +119,7 @@ This website contains content from the 2018 DATIC workshop on Dyadic Data Analys
     
 ***
 
-##Day 5: Additional Topics
+## Day 5: Additional Topics
 
   + Lecture 9-12
     - [Presentation and Doing Dyadic Data Analysis Right](Presentation.pdf)
@@ -137,7 +137,7 @@ This website contains content from the 2018 DATIC workshop on Dyadic Data Analys
 
 ***
 
-#Links to Apps and `dyadr`
+# Links to Apps and `dyadr`
 
   + [ItoP](https://davidakenny.shinyapps.io/ItoP/)
   + [DtoP](https://davidakenny.shinyapps.io/DtoP/)
@@ -149,7 +149,7 @@ This website contains content from the 2018 DATIC workshop on Dyadic Data Analys
   + [APIMoM](https://davidakenny.shinyapps.io/APIMoM/)
   + [dyadr gitHub](https://github.com/RandiLGarcia/dyadr)
 
-#Cheatsheets and R Tutorials
+# Cheatsheets and R Tutorials
 
   + [All cheatsheets](https://www.rstudio.com/resources/cheatsheets/)
   + [dplyr cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
@@ -157,7 +157,7 @@ This website contains content from the 2018 DATIC workshop on Dyadic Data Analys
   + [RMarkdown cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)  
     - [Advanced RMarkdown](http://rmarkdown.rstudio.com/authoring_pandoc_markdown.html)
     
-#Other Helpful Links
+# Other Helpful Links
 
   + [UConn Map](http://maps.uconn.edu/index.php)
   + [Dave's Website](http://davidakenny.net/index.htm)
