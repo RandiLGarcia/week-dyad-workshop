@@ -13,11 +13,10 @@ fontsize: 12 pt
 
  > **Instructors**: Randi Garcia and Dave Kenny  
  > **Teaching Assistants**: Julianna Alvord and Emma Ning  
-    
-***
-#Meeting Sign-up Sheet
 
-  > Sign-up on [this Googlesheet](https://docs.google.com/spreadsheets/d/1uVj9usSealO8WTBTkXm99x7fCNPym5o5iWvIHf6J7Y8/edit?usp=sharing)  
+***
+
+This website contains content from the 2018 DATIC workshop on Dyadic Data Analysis. The riggs data is not available for sharing publicly.    
 
 ***
 
