@@ -38,7 +38,6 @@ This website contains content from the 2018 DATIC workshop on Dyadic Data Analys
   + Late Afternoon Session 3:30-5:00
     - Homework (optional)
     - Restructure and Do Runs on One's Own Data
-    - [Individual Meetings](https://docs.google.com/spreadsheets/d/1uVj9usSealO8WTBTkXm99x7fCNPym5o5iWvIHf6J7Y8/edit?usp=sharing)
 
 ***
 
@@ -57,7 +56,6 @@ This website contains content from the 2018 DATIC workshop on Dyadic Data Analys
   + Late Afternoon Session 3:30-5:00
     - Homework (optional)
     - Do Runs on One's Own Data
-    - [Individual Meetings](https://docs.google.com/spreadsheets/d/1uVj9usSealO8WTBTkXm99x7fCNPym5o5iWvIHf6J7Y8/edit?usp=sharing)
 
 ***
 
@@ -76,7 +74,6 @@ This website contains content from the 2018 DATIC workshop on Dyadic Data Analys
   + Late Afternoon Session 3:30-5:00
     - Homework (optional)
     - Do Runs on One's Own Data
-    - [Individual Meetings](https://docs.google.com/spreadsheets/d/1uVj9usSealO8WTBTkXm99x7fCNPym5o5iWvIHf6J7Y8/edit?usp=sharing)
 
 ***
 
@@ -98,7 +95,6 @@ This website contains content from the 2018 DATIC workshop on Dyadic Data Analys
   + Late Afternoon Session 3:30-5:00
     - Homework (optional)
     - Do Runs on One's Own Data
-    - [Individual Meetings](https://docs.google.com/spreadsheets/d/1uVj9usSealO8WTBTkXm99x7fCNPym5o5iWvIHf6J7Y8/edit?usp=sharing) 
 
 ### Structural Equation Modeling for Dyadic Data
 
@@ -115,7 +111,6 @@ This website contains content from the 2018 DATIC workshop on Dyadic Data Analys
   + Late Afternoon Session 3:30-5:00
     - Homework (optional)
     - Do Runs on One's Own Data
-    - [Individual Meetings](https://docs.google.com/spreadsheets/d/1uVj9usSealO8WTBTkXm99x7fCNPym5o5iWvIHf6J7Y8/edit?usp=sharing) 
     
 ***
 
